@@ -1,0 +1,19 @@
+{
+  "name": "iot-widgets-test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "iot-widgets": "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#5784732"
+  },
+  "devDependencies": {
+    "sass": "^1.69.7",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.8"
+  }
+}
