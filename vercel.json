@@ -1,0 +1,3 @@
+{
+    "installCommand": "yarn install --network-concurrency 1"
+}
