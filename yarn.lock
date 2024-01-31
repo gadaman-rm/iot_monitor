@@ -275,9 +275,9 @@ immutable@^4.0.0:
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.5.tgz#f8b436e66d59f99760dc577f5c99a4fd2a5cc5a0"
   integrity sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==
 
-"iot-widgets@git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3":
+"iot-widgets@git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3":
   version "0.0.0"
-  resolved "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3956ab159b611790adec25ce067cb388e8"
+  resolved "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3956ab159b611790adec25ce067cb388e8"
   dependencies:
     uuid "^9.0.1"
 
