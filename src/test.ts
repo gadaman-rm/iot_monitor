@@ -1,5 +1,5 @@
-import { Gauge, Slider } from 'iot-widgets'
-import { random, randomId, randomItem } from 'iot-widgets/math'
+import { Gauge, Slider } from '@gadaman-rm/iot-widgets'
+import { random, randomId, randomItem } from '@gadaman-rm/iot-widgets/math'
 import { Store } from './store'
 
 export const startTest = (store: Store, number = 2000) => {

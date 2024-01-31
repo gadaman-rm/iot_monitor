@@ -117,6 +117,13 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz#c57c8afbb4054a3ab8317591a0b7320360b444ae"
   integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
+"@gadaman-rm/iot-widgets@^0.0.0":
+  version "0.0.0"
+  resolved "https://npm.pkg.github.com/download/@gadaman-rm/iot-widgets/0.0.0/f382a703631b00aa1f297432749c48efdbf56d4e#f382a703631b00aa1f297432749c48efdbf56d4e"
+  integrity sha512-mfcrOhJj7oc+Cs0/mfSV7+c34VwgoHtCWQjzTeMb0A61MJxtEoQps2/9yWDVrByGJNqUiuejMhRt1+sG+VDe8g==
+  dependencies:
+    uuid "^9.0.1"
+
 "@rollup/rollup-android-arm-eabi@4.9.6":
   version "4.9.6"
   resolved "https://registry.yarnpkg.com/@rollup/rollup-android-arm-eabi/-/rollup-android-arm-eabi-4.9.6.tgz#66b8d9cb2b3a474d115500f9ebaf43e2126fe496"
@@ -274,12 +281,6 @@ immutable@^4.0.0:
   version "4.3.5"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.3.5.tgz#f8b436e66d59f99760dc577f5c99a4fd2a5cc5a0"
   integrity sha512-8eabxkth9gZatlwl5TBuJnCsoTADlL6ftEr7A4qgdaTsPyreilDSnUk57SO+jfKcNtxPa22U5KK6DSeAYhpBJw==
-
-"iot-widgets@git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3":
-  version "0.0.0"
-  resolved "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3956ab159b611790adec25ce067cb388e8"
-  dependencies:
-    uuid "^9.0.1"
 
 is-binary-path@~2.1.0:
   version "2.1.0"

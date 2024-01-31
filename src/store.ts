@@ -1,6 +1,6 @@
-import { Slider, Gauge, EditBox, Container } from "iot-widgets"
-import { KeyShortcatListener, PanListener, ZoomListener } from "iot-widgets/event"
-import { Point, randomId } from "iot-widgets/math"
+import { Slider, Gauge, EditBox, Container } from "@gadaman-rm/iot-widgets"
+import { KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
+import { Point, randomId } from "@gadaman-rm/iot-widgets/math"
 
 const mouseCoordInZoomAndPan2 = (e: MouseEvent, pan: Point, zoom: number) => {
     return {

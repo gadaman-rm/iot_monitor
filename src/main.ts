@@ -1,7 +1,7 @@
 import './reset.scss'
 import './app.scss'
 import { Store } from './store'
-import { Container, Slider } from 'iot-widgets'
+import { Container, Slider } from '@gadaman-rm/iot-widgets'
 import { startTest } from './test'
 
 const app = document.querySelector<HTMLDivElement>("#app")!
