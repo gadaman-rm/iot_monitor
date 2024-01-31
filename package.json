@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "iot-widgets": "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3"
+    "iot-widgets": "git+https://gadaman-rm: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@github.com/gadaman-rm/iot-widgets.git#f619bc3"
   },
   "devDependencies": {
     "sass": "^1.69.7",
