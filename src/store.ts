@@ -61,12 +61,11 @@ export class Store {
             initFn({ clientX: e.clientX - pan.x, clientY: e.clientY - pan.y })
         }
         this.panListener.onPanMove = (e, init) => {
-            const pan = this.container.pan
             if (init) {
                 const x = e.clientX - init.clientX
                 const y = e.clientY - init.clientY
 
-                this.container.pan = { ...pan, x, y }
+                this.container.pan = { x, y }
             }
         }
         this.zoomListener.onZoom = (e) => {
