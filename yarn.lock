@@ -117,10 +117,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz#c57c8afbb4054a3ab8317591a0b7320360b444ae"
   integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
-"@gadaman-rm/iot-widgets@^0.0.1":
-  version "0.0.1"
-  resolved "https://npm.pkg.github.com/download/@gadaman-rm/iot-widgets/0.0.1/662eba27e9578513355292f1d912a65fbe9afb1f#662eba27e9578513355292f1d912a65fbe9afb1f"
-  integrity sha512-mKZhCAZnu3MSb9X74zEOGfhKWnix9R2wMQgLZUORGwjhARE2k++1nOT2BDl1XtqISQxJfKaqWGOIW45A5uHbWQ==
+"@gadaman-rm/iot-widgets@^0.0.2":
+  version "0.0.2"
+  resolved "https://npm.pkg.github.com/download/@gadaman-rm/iot-widgets/0.0.2/75ba5923032d2177fbac5de821136ff0a1a82282#75ba5923032d2177fbac5de821136ff0a1a82282"
+  integrity sha512-RChwH228nHD4Ql5N3Kp32mms3xdXkO/R83Pz4mLnYulQ20/RtEUWVOwggFjDWSJZQD08MiYZ9+/aCU23XHNtTw==
   dependencies:
     uuid "^9.0.1"
 

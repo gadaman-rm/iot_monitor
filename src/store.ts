@@ -1,13 +1,6 @@
 import { Slider, Gauge, EditBox, Container } from "@gadaman-rm/iot-widgets"
 import { KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
-import { Point, randomId } from "@gadaman-rm/iot-widgets/math"
-
-const mouseCoordInZoomAndPan2 = (e: MouseEvent, pan: Point, zoom: number) => {
-    return {
-        x: (e.clientX - pan.x) * zoom,
-        y: (e.clientY - pan.y) * zoom,
-    }
-}
+import { randomId } from "@gadaman-rm/iot-widgets/math"
 
 type IWidgets = Slider & Gauge
 
@@ -30,22 +23,6 @@ export class Store {
         this.panListener = new PanListener()
         this.zoomListener = new ZoomListener()
         this.initHandler()
-
-        // document.addEventListener('mousemove', (e) => {
-        //     const currentMouseCoord = mouseCoordShow(e)
-
-        //     logInfo({
-        //         points: [
-        //             {
-        //                 label: 'm',
-        //                 point: {
-        //                     x: currentMouseCoord.x + 10,
-        //                     y: currentMouseCoord.y + 10,
-        //                 }
-        //             }
-        //         ]
-        //     })
-        // })
     }
 
     initHandler() {
@@ -69,21 +46,23 @@ export class Store {
             }
         }
         this.zoomListener.onZoom = (e) => {
+            const currentMouseCoord = this.container.mouseCoordInContainerMatrix(e)
             if (e.ctrlKey) {
                 e.preventDefault()
-                const pan = this.container.pan
-                const zoom = this.container.zoom
-                const currentMouseCoord = mouseCoordInZoomAndPan2(e, pan, zoom)
-                // const currentMouseCoord = {x: e.clientX, y: e.clientY}
-
+                const { pan, zoom } = this.container
                 const xs = (currentMouseCoord.x - pan.x) / zoom
                 const ys = (currentMouseCoord.y - pan.y) / zoom
-                this.container.zoom = zoom
+
                 if (((e as any)?.wheelDelta ? (e as any).wheelDelta : -e.deltaY) > 0)
                     this.container.zoom = zoom * 1.2
                 else
                     this.container.zoom = zoom / 1.2
-                this.container.pan = { x: currentMouseCoord.x - xs * zoom, y: currentMouseCoord.y - ys * zoom }
+
+                const newPan = {  
+                    x: currentMouseCoord.x - xs * this.container.zoom, 
+                    y: currentMouseCoord.y - ys * this.container.zoom
+                }
+                this.container.pan = newPan
             }
         }
     }

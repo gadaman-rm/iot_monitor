@@ -6,8 +6,8 @@ import { startTest } from './test'
 
 const app = document.querySelector<HTMLDivElement>("#app")!
 const containerMain = document.createElement('main')
-const container = new Container({x: 200, y: 200}, 1.4)
+const container = new Container({ x: 0, y: 0 }, 1)
 container.appendChild(containerMain)
-const store = new Store(app, container, [new Slider()])
+const store = new Store(app, container, [new Slider("1", 700, 70, 0, 0)])
 
 startTest(store, 500)
