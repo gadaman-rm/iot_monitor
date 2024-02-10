@@ -6,6 +6,7 @@ import { KeyShortcatListener, PanListener, ZoomListener, DragListener } from "@g
 import { Listener } from "../listener"
 import { ZoomPanListener } from "../listener/ZoomPanListener"
 import { SelectListener } from "../listener/SelectListener"
+import { EditListener } from "../listener/EditListener"
 
 export function registerInjections() {
     injected(App, TOKENS.appProps.appRef, TOKENS.svgContainer, TOKENS.listener, TOKENS.appProps.widgets.optional)
@@ -15,6 +16,7 @@ export function registerInjections() {
     injected(KeyShortcatListener, TOKENS.keyShortcatListenerProps.key, TOKENS.keyShortcatListenerProps.container.optional)
     injected(ZoomPanListener, TOKENS.svgContainer, TOKENS.panListener, TOKENS.zoomListener, TOKENS.keyShortcatListener)
     injected(DragListener, TOKENS.dragListenerProps.element, TOKENS.dragListenerProps.container.optional)
-    injected(SelectListener, TOKENS.dragListener)
-    injected(Listener, TOKENS.svgContainer, TOKENS.zoomPanListener, TOKENS.selectListener)
+    injected(SelectListener, TOKENS.svgContainer, TOKENS.dragListener)
+    injected(EditListener, TOKENS.svgContainer)
+    injected(Listener, TOKENS.svgContainer, TOKENS.zoomPanListener, TOKENS.selectListener, TOKENS.editListener)
 }

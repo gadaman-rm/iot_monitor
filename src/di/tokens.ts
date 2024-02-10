@@ -8,6 +8,7 @@ import { Listener } from '../listener'
 import { ZoomPanListener } from '../listener/ZoomPanListener'
 import { Context } from './context'
 import { MoveDragInit, SelectListener } from '../listener/SelectListener'
+import { EditListener } from '../listener/EditListener'
 
 export const TOKENS = {
     Root: token<Container>('root-container'),
@@ -48,5 +49,6 @@ export const TOKENS = {
         container: token<HTMLElement | Document>('dragListener: container'),
     },
     selectListener: token<SelectListener>('selectListener'),
+    editListener: token<EditListener>('editListener'),
     listener: token<Listener>('listener'),
 }

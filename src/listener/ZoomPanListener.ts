@@ -25,7 +25,7 @@ export class ZoomPanListener {
     public set onZoomPan(fn: (zoom: number, pan: Point) => void) { this.#onZoomPan = fn }
 
     initHandler() {
-        this.digit0keyListener.onKeyDown = (e) => { if (this.#onZoomPan && e.ctrlKey ) this.#onZoomPan(1, { x: 0, y: 0 }) }
+        this.digit0keyListener.onKeyDown = (e) => { if (e.ctrlKey) this.defaultZoomPan() }
         this.panListener.onPanStart = (e) => {
             const pan = this.svgContainer.pan
             e.param.initFn({ clientX: e.clientX - pan.x, clientY: e.clientY - pan.y })
@@ -47,4 +47,5 @@ export class ZoomPanListener {
             }
         }
     }
+    defaultZoomPan() { if (this.#onZoomPan) this.#onZoomPan(1, { x: 0, y: 0 }) }
 }
