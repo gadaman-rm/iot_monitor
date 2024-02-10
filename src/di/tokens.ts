@@ -3,11 +3,11 @@ import { App } from '../app'
 import { SvgContainer } from '@gadaman-rm/iot-widgets'
 import { Point } from '@gadaman-rm/iot-widgets/math'
 import { IWidgets } from '@gadaman-rm/iot-widgets'
-import { KeyShortcatListener, PanListener, ZoomListener } from '@gadaman-rm/iot-widgets/event'
+import { DragListener, KeyShortcatListener, PanListener, ZoomListener } from '@gadaman-rm/iot-widgets/event'
 import { Listener } from '../listener'
 import { ZoomPanListener } from '../listener/ZoomPanListener'
 import { Context } from './context'
-import { SelectListener } from '../listener/SelectListener'
+import { MoveDragInit, SelectListener } from '../listener/SelectListener'
 
 export const TOKENS = {
     Root: token<Container>('root-container'),
@@ -42,6 +42,11 @@ export const TOKENS = {
         container: token<HTMLElement | Document>('keyShortcatListener: container'),
     },
     zoomPanListener: token<ZoomPanListener>('zoomPanListener'),
+    dragListener: token<DragListener<MoveDragInit>>('dragListener'),
+    dragListenerProps: {
+        element: token<HTMLElement | SVGElement>('dragListener: element'),
+        container: token<HTMLElement | Document>('dragListener: container'),
+    },
     selectListener: token<SelectListener>('selectListener'),
     listener: token<Listener>('listener'),
 }

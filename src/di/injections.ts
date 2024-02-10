@@ -2,7 +2,7 @@ import { injected } from "brandi"
 import { TOKENS } from "./tokens"
 import { App } from "../app"
 import { SvgContainer } from '@gadaman-rm/iot-widgets'
-import { KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
+import { KeyShortcatListener, PanListener, ZoomListener, DragListener } from "@gadaman-rm/iot-widgets/event"
 import { Listener } from "../listener"
 import { ZoomPanListener } from "../listener/ZoomPanListener"
 import { SelectListener } from "../listener/SelectListener"
@@ -14,6 +14,7 @@ export function registerInjections() {
     injected(PanListener, TOKENS.panListenerProps.container.optional)
     injected(KeyShortcatListener, TOKENS.keyShortcatListenerProps.key, TOKENS.keyShortcatListenerProps.container.optional)
     injected(ZoomPanListener, TOKENS.svgContainer, TOKENS.panListener, TOKENS.zoomListener, TOKENS.keyShortcatListener)
-    injected(SelectListener, TOKENS.svgContainer)
-    injected(Listener, TOKENS.zoomPanListener, TOKENS.selectListener)
+    injected(DragListener, TOKENS.dragListenerProps.element, TOKENS.dragListenerProps.container.optional)
+    injected(SelectListener, TOKENS.dragListener)
+    injected(Listener, TOKENS.svgContainer, TOKENS.zoomPanListener, TOKENS.selectListener)
 }

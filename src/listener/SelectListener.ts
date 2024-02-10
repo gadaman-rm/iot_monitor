@@ -1,44 +1,43 @@
-import { EditBox, SvgContainer } from "@gadaman-rm/iot-widgets"
-import { randomId } from "@gadaman-rm/iot-widgets/math"
+import { IWidgets } from "@gadaman-rm/iot-widgets"
+import { DragListener, DragMouseEvent } from "@gadaman-rm/iot-widgets/event"
+
+export interface MoveDragInit {
+    active: boolean
+    widget: IWidgets
+    x: number
+    y: number
+    clientX: number
+    clientY: number
+}
 
 export class SelectListener {
-    svgContainer: SvgContainer
-    constructor(svgContainer: SvgContainer) {
-        this.svgContainer = svgContainer
-        document.addEventListener('click', this.handleClick)
+    dragListener: DragListener<MoveDragInit>
+    #onSelect?: (widget: IWidgets | null, deselect: boolean) => void
+    #onDragStart?: (e: DragMouseEvent<MoveDragInit>) => void
+    #onDrag?: (e: DragMouseEvent<MoveDragInit>) => void
+    #onDragEnd?: (e: DragMouseEvent<MoveDragInit>) => void
+    constructor(dragListener: DragListener<MoveDragInit>) { 
+        this.dragListener = dragListener
+        this.initHandler()
     }
+    public set onSelect(fn: (widget: IWidgets | null, deselect: boolean) => void) { this.#onSelect = fn }
+    public set onDragStart(fn: (e: DragMouseEvent<MoveDragInit>) => void) { this.#onDragStart = fn }
+    public set onDrag(fn: (e: DragMouseEvent<MoveDragInit>) => void) { this.#onDrag = fn }
+    public set onDragEnd(fn: (e: DragMouseEvent<MoveDragInit>) => void) { this.#onDragEnd = fn }
 
-    handleClick = (e: MouseEvent) => {
-        this.attachEditBox(e.target as any)
-    }
-    attachEditBox(widget: HTMLElement) {
-        const widgetId = widget.getAttribute('id')
-        const widgetType = widget.getAttribute('is')
-
-        // Add EditBox to Widget!
-        if (widgetId && widgetId !== 'app' && widgetType !== 'g-editbox') {
-            if (!this.svgContainer.findWidgetEditBox(widget as any)) {
-                const x = +widget.getAttribute('x')!
-                const y = +widget.getAttribute('y')!
-                const width = +widget.getAttribute('width')!
-                const height = +widget.getAttribute('height')!
-                const rotate = +widget.getAttribute('rotate')!
-                const origin = widget.getAttribute('origin')!
-
-                const editBox = new EditBox(randomId(), this.svgContainer as any, width, height, x, y, rotate, origin)
-                editBox.onEdit = (e) => {
-                    widget.setAttribute('width', e.width.toString())
-                    widget.setAttribute('height', e.height.toString())
-                    widget.setAttribute('rotate', e.rotate.toString())
-                    widget.setAttribute('origin', e.originStr)
-                    widget.setAttribute('x', e.x.toString())
-                    widget.setAttribute('y', e.y.toString())
-                }
-                this.svgContainer.addWidgetEditBox(widget as any, editBox)
-            }
+    initHandler() {
+        this.dragListener.onDragStart = (e) => {
+            const widget = e.target as IWidgets
+            const widgetId = widget.getAttribute('id')
+            if (this.#onDragStart && widgetId && widgetId !== 'app') this.#onDragStart(e)
         }
-
-        // Remove EditBoxs
-        if (widgetId === 'app' || !widgetId) { this.svgContainer.removeWidgetEditBoxs() }
+        this.dragListener.onDragMove = (e) => { if (this.#onDrag) this.#onDrag(e) }
+        this.dragListener.onDragEnd = (e) => {
+            const widgetId = (e.target as any).getAttribute('id')
+            if (this.#onDragEnd) this.#onDragEnd(e)
+            if(e.param.init && e.param.init.widget && this.#onSelect) this.#onSelect(e.param.init.widget, !e.ctrlKey)
+            if (this.#onSelect && (widgetId === 'app' || !widgetId)) this.#onSelect(null, true)
+        }
     }
+    onSelectEmitt(widget: IWidgets | null, deselect: boolean) { if(this.#onSelect) this.#onSelect(widget, deselect) }
 }
