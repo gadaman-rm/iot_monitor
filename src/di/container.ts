@@ -21,8 +21,8 @@ container.bind(TOKENS.appProps.widgets).toConstant([])
 container.bind(TOKENS.app).toInstance(App).inSingletonScope()
 container.bind(TOKENS.context).toInstance(Context).inSingletonScope()
 
-container.bind(TOKENS.svgContainerProps.pan).toConstant({ x: 100, y: 100 })
-container.bind(TOKENS.svgContainerProps.zoom).toConstant(1.4)
+container.bind(TOKENS.svgContainerProps.pan).toConstant({ x: 0, y: 0 })
+container.bind(TOKENS.svgContainerProps.zoom).toConstant(1)
 container.bind(TOKENS.svgContainer).toInstance(SvgContainer).inSingletonScope()
 
 container.bind(TOKENS.zoomListenerProps.container)

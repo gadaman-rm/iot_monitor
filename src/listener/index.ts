@@ -61,27 +61,65 @@ export class Listener {
         this.selectListener.onDragEnd = (e) => { if(e.param.init) e.param.initFn({ ...e.param.init, active: false }) }
     }
 
-    select(widget: IWidgets | null) {
-        if (widget && !this.svgContainer.findWidgetEditBox(widget)) {
-            const x = +widget.getAttribute('x')!
-            const y = +widget.getAttribute('y')!
-            const width = +widget.getAttribute('width')!
-            const height = +widget.getAttribute('height')!
-            const rotate = +widget.getAttribute('rotate')!
-            const origin = widget.getAttribute('origin')!
+    select(selectedWidget: IWidgets | null) {
+        if (selectedWidget && !this.svgContainer.findWidgetEditBox(selectedWidget)) {
+            const x = +selectedWidget.getAttribute('x')!
+            const y = +selectedWidget.getAttribute('y')!
+            const width = +selectedWidget.getAttribute('width')!
+            const height = +selectedWidget.getAttribute('height')!
+            const rotate = +selectedWidget.getAttribute('rotate')!
+            const origin = selectedWidget.getAttribute('origin')!
 
             const editBox = new EditBox(randomId(), this.svgContainer, width, height, x, y, rotate, origin)
             editBox.onEditStart = () => { this.mode = 'edit' }
             editBox.onEdit = (e) => {
-                widget.setAttribute('width', e.width.toString())
-                widget.setAttribute('height', e.height.toString())
-                widget.setAttribute('rotate', e.rotate.toString())
-                widget.setAttribute('origin', e.originStr)
-                widget.setAttribute('x', e.x.toString())
-                widget.setAttribute('y', e.y.toString())
+                const otherEditBoxs = this.svgContainer.editBoxforWidgets.filter(item => item.editBox.id !== editBox.id)
+
+                switch (e.type) {
+                    case "move":
+                        otherEditBoxs.map((item) => {
+                            const x = item.widget.x + (e.x - selectedWidget.x)
+                            const y = item.widget.y + (e.y - selectedWidget.y)
+                            item.widget.x = x
+                            item.widget.y = y
+                            item.editBox.x = x
+                            item.editBox.y = y
+                            return item
+                        })
+                        break
+                    case "rotate":
+                        otherEditBoxs.map((item) => {
+                            item.editBox.rotate = e.rotate
+                            item.widget.rotate = e.rotate
+                            return item
+                        })
+                        break
+                    // case "rmid-resize":
+                    //     otherEditBoxs.map((item) => {
+                    //         item.editBox.width = e.width
+                    //         item.widget.width = e.width
+
+                    //         // const x = item.widget.x + (e.x - selectedWidget.x)
+                    //         // const y = item.widget.y + (e.y - selectedWidget.y)
+                    //         // item.widget.x = x
+                    //         // item.widget.y = y
+                    //         // item.editBox.x = x
+                    //         // item.editBox.y = y
+
+                    //         return item
+                    //     })
+                    //     break
+                }
+ 
+                selectedWidget.width = e.width
+                selectedWidget.height = e.height
+                selectedWidget.rotate = e.rotate
+                selectedWidget.origin = e.origin
+                selectedWidget.x = e.x
+                selectedWidget.y = e.y
             }
             editBox.onEditEnd = () => { setTimeout(() => { this.mode = 'view'}, 0) }
-            this.svgContainer.addWidgetEditBox(widget, editBox)
+            this.svgContainer.addWidgetEditBox(selectedWidget, editBox)
         }
     }
     selectAll() { this.svgContainer.widgets.forEach(item => this.selectListener.onSelectEmitt(item, false)) }
