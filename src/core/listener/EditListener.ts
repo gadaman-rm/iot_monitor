@@ -42,8 +42,33 @@ export class EditListener {
                             return item
                         })
                         break
+
+                    case "rmid-resize":
+                        otherEditBoxs.map((item) => {
+                            item.editBox.width = e.width
+                            item.widget.width = e.width
+                            return item
+                        })
+                        break
+                    case "bmid-resize":
+                        otherEditBoxs.map((item) => {
+                            item.editBox.height = e.height
+                            item.widget.height = e.height
+                            return item
+                        })
+                        break
+
+                    case "br-resize":
+                        otherEditBoxs.map((item) => {
+                            item.editBox.width = e.width
+                            item.widget.width = e.width
+                            item.editBox.height = e.height
+                            item.widget.height = e.height
+                            return item
+                        })
+                        break
                 }
- 
+
                 selectedWidget.width = e.width
                 selectedWidget.height = e.height
                 selectedWidget.rotate = e.rotate
@@ -51,7 +76,7 @@ export class EditListener {
                 selectedWidget.x = e.x
                 selectedWidget.y = e.y
             }
-            editBox.onEditEnd = () => { setTimeout(() => { this.mode = 'view'}, 0) }
+            editBox.onEditEnd = () => { setTimeout(() => { this.mode = 'view' }, 0) }
             this.svgContainer.addWidgetEditBox(selectedWidget, editBox)
         }
     }
