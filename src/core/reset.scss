@@ -12,7 +12,7 @@ footer, header, hgroup, menu, nav, section, summary,
 time, mark, audio, video {
     margin:0;
     padding:0;
-    border:0;
+    // border:0;
     outline:0;
     font-size:100%;
     font-weight:normal;
@@ -69,20 +69,20 @@ del {
 }
 
 abbr[title], dfn[title] {
-    border-bottom:1px dotted;
+    // border-bottom:1px dotted;
     cursor:help;
 }
 
 table {
-    border-collapse:collapse;
-    border-spacing:0;
+    // border-collapse:collapse;
+    // border-spacing:0;
 }
 
 hr {
     display:block;
     height:1px;
-    border:0;  
-    border-top:1px solid #cccccc;
+    // border:0;  
+    // border-top:1px solid #cccccc;
     margin:1em 0;
     padding:0;
 }
@@ -97,4 +97,5 @@ body {
     overflow: hidden;
     touch-action: manipulation;
     user-select: none;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
 }

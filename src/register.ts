@@ -1,7 +1,7 @@
 import { Container, injected } from 'brandi'
 import { createApp, createDragListener, createKeyShortcatListener, createPanListener, createSvgContainer, createZoomListener } from './create'
-import { App, DragListener, EditListener, KeyShortcatListener, Listener, PanListener, RootContainer, SelectListener, SvgContainer, ZoomListener, ZoomPanListener } from './tokens'
-import { IEditListener, IListener, ISelectListener, IZoomPanListener } from './types'
+import { App, DragListener, DrawListener, EditListener, KeyShortcatListener, Listener, PanListener, RootContainer, SelectListener, Sidebar, SvgContainer, ZoomListener, ZoomPanListener } from './tokens'
+import { ISidebar, IEditListener, IListener, ISelectListener, IZoomPanListener, IDrawListener } from './types'
 
 export function registerBindings(container: Container) {
     container.bind(RootContainer).toConstant(container)
@@ -11,18 +11,26 @@ export function registerBindings(container: Container) {
     container.bind(ZoomListener).toInstance(createZoomListener).inSingletonScope()
     container.bind(PanListener).toInstance(createPanListener).inSingletonScope()
     container.bind(KeyShortcatListener).toInstance(createKeyShortcatListener).inSingletonScope()
-    container.bind(DragListener).toInstance(createDragListener).inSingletonScope()
+    container.bind(DragListener).toInstance(createDragListener).inTransientScope()
     
     container.bind(ZoomPanListener).toInstance(IZoomPanListener).inSingletonScope()
     container.bind(SelectListener).toInstance(ISelectListener).inSingletonScope()
+    container.bind(DrawListener).toInstance(IDrawListener).inSingletonScope()
     container.bind(EditListener).toInstance(IEditListener).inSingletonScope()
     container.bind(Listener).toInstance(IListener).inSingletonScope()
+
+    // ********************** core components **********************
+    container.bind(Sidebar).toInstance(ISidebar).inSingletonScope()
 }
 
 export function registerInjections() {
-    injected(createApp, SvgContainer, Listener)
+    injected(createApp, SvgContainer, Sidebar, Listener)
     injected(IZoomPanListener, SvgContainer, PanListener, ZoomListener, KeyShortcatListener)
-    injected(ISelectListener, SvgContainer, DragListener)
+    injected(ISelectListener, SvgContainer, EditListener, DragListener)
+    injected(IDrawListener, SvgContainer, EditListener, SelectListener, DragListener as any)
     injected(IEditListener, SvgContainer)
     injected(IListener, SvgContainer, ZoomPanListener, SelectListener, EditListener)
+
+    // ********************** core components **********************
+    injected(ISidebar, EditListener, DrawListener)
 }

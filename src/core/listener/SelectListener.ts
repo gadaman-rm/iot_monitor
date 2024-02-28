@@ -1,6 +1,7 @@
 import { IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
 import { DragListener } from "@gadaman-rm/iot-widgets/event"
 import { point } from "@gadaman-rm/iot-widgets/math"
+import { EditListener } from "./EditListener"
 
 export interface MoveDragInit {
     active: boolean
@@ -15,7 +16,7 @@ export class SelectListener {
     svgContainer: SvgContainer
     dragListener: DragListener<MoveDragInit>
     #onSelect?: (widget: IWidgets | null, deselect: boolean) => void
-    constructor(svgContainer: SvgContainer, dragListener: DragListener<MoveDragInit>) {
+    constructor(svgContainer: SvgContainer, public editListener: EditListener, dragListener: DragListener<MoveDragInit>) {
         this.svgContainer = svgContainer
         this.dragListener = dragListener
         this.initHandler()
@@ -25,15 +26,17 @@ export class SelectListener {
 
     initHandler() {
         this.dragListener.onDragStart = (e) => {
-            const widget = e.target as IWidgets
-            const widgetType = widget.getAttribute('is')
-            const widgetId = widget.getAttribute('id')
-            if (widgetId && widgetId !== 'app') {
-                const { initFn } = e.param
-                if (widgetType !== 'g-editbox') {
-                    if (!e.ctrlKey) this.emittSelect(null, true)
-                    const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
-                    initFn!({ widget, x: widget.x, y: widget.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
+            if (this.editListener.mode !== 'draw') {
+                const widget = e.target as IWidgets
+                const widgetType = widget.getAttribute('is')
+                const widgetId = widget.getAttribute('id')
+                if (widgetId && widgetId !== 'app') {
+                    const { initFn } = e.param
+                    if (widgetType !== 'g-editbox') {
+                        if (!e.ctrlKey) this.emittSelect(null, true)
+                        const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
+                        initFn!({ widget, x: widget.x, y: widget.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
+                    }
                 }
             }
         }

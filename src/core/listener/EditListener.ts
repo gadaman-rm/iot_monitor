@@ -1,13 +1,24 @@
 import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
 import { randomId } from "@gadaman-rm/iot-widgets/math"
 
+export type Mode = 'edit' | 'view' | 'draw'
 export class EditListener {
     svgContainer: SvgContainer
-    mode: 'edit' | 'view'
+    #mode!: Mode
+    #onModeChange?: (mode: Mode) => void
     constructor(svgContainer: SvgContainer) {
         this.svgContainer = svgContainer
         this.mode = 'view'
     }
+
+    public set onModeChange(fn: (mode: Mode) => void) { this.#onModeChange = fn }
+    public set mode(mode : Mode) { 
+        if(this.#mode !== mode) {
+            this.#mode = mode 
+            if(this.#onModeChange) this.#onModeChange(mode)
+        }
+    }
+    public get mode() { return this.#mode  }
 
     select(selectedWidget: IWidgets | null) {
         if (selectedWidget && !this.svgContainer.findWidgetEditBox(selectedWidget)) {
@@ -78,6 +89,8 @@ export class EditListener {
             }
             editBox.onEditEnd = () => { setTimeout(() => { this.mode = 'view' }, 0) }
             this.svgContainer.addWidgetEditBox(selectedWidget, editBox)
+
+            return editBox
         }
     }
 }
