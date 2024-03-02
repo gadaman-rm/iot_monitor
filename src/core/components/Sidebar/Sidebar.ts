@@ -3,8 +3,8 @@ import htmlText from './Sidebar.html?raw'
 import cssText from './Sidebar.scss?inline'
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
-import { Gauge } from "@gadaman-rm/iot-widgets"
 import { MdIconButton } from "@material/web/iconbutton/icon-button"
+import { strToWidgets } from "@gadaman-rm/iot-widgets"
 
 const template = document.createElement('template')
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
@@ -50,7 +50,7 @@ export class Sidebar extends HTMLDivElement {
             if (item === elem) {
                 selected = item
                 selected.classList.add('widget--selected')
-                this.drawListener.drawWidget = new Gauge()
+                this.drawListener.drawWidget = () => strToWidgets(item.getAttribute('name') as any)
             }
             else item.classList.remove('widget--selected')
         })

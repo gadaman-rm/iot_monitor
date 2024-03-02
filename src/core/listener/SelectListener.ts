@@ -25,7 +25,7 @@ export class SelectListener {
     emittSelect(widget: IWidgets | null, deselect: boolean) { if (this.#onSelect) this.#onSelect(widget, deselect) }
 
     initHandler() {
-        this.dragListener.onDragStart = (e) => {
+        this.dragListener.onDragStart = (e) => { 
             if (this.editListener.mode !== 'draw') {
                 const widget = e.target as IWidgets
                 const widgetType = widget.getAttribute('is')
@@ -63,5 +63,5 @@ export class SelectListener {
         }
     }
     selectAll() { this.svgContainer.widgets.forEach(item => this.emittSelect(item, false)) }
-    deSelectAll() { this.svgContainer.removeWidgetEditBoxs() }
+    deSelectAll() { this.svgContainer.removeWidgetEditBox() }
 }

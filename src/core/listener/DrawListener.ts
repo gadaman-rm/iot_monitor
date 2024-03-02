@@ -1,4 +1,4 @@
-import { EditBox, Gauge, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
+import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
 import { DragListener } from "@gadaman-rm/iot-widgets/event"
 import { EditListener } from "./EditListener"
 import { MoveDragInit, SelectListener } from "./SelectListener"
@@ -7,7 +7,7 @@ import { distancePointFromLine, point } from "@gadaman-rm/iot-widgets/math"
 export class DrawListener {
     svgContainer: SvgContainer
     dragListener: DragListener<MoveDragInit>
-    #drawWidget?: IWidgets
+    #drawWidget?: () => IWidgets | undefined | null
     #drawWidgetEditBox?: EditBox
     constructor(svgContainer: SvgContainer, public editListener: EditListener, public selectListener: SelectListener, dragListener: DragListener<MoveDragInit>) {
         this.svgContainer = svgContainer
@@ -15,23 +15,24 @@ export class DrawListener {
         this.initHandler()
     }
 
-    public set drawWidget(_widget: IWidgets) { this.#drawWidget = new Gauge() }
-    newDraw() { this.#drawWidget = new Gauge()}
+    public set drawWidget(fn: () => IWidgets | undefined | null) { this.#drawWidget = fn }
 
     initHandler() {
         this.dragListener.onDragStart = (e) => {
             if (this.editListener.mode === 'draw' && this.#drawWidget && (e.target as HTMLElement).getAttribute('is') !== 'i-sidebar') {
                 this.selectListener.deSelectAll()
-                
                 const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
-                e.param.initFn!({ widget: this.#drawWidget, x: currentMouseCoord.x, y: currentMouseCoord.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
-                this.#drawWidget.x = currentMouseCoord.x
-                this.#drawWidget.y = currentMouseCoord.y
-                this.#drawWidget.width = 0
-                this.#drawWidget.height = 0
-                
-                this.svgContainer.addWidget(this.#drawWidget)
-                this.#drawWidgetEditBox = this.editListener.select(this.#drawWidget)
+                const drawWidget = this.#drawWidget()
+                if(drawWidget) {
+                    e.param.initFn!({ widget: drawWidget, x: currentMouseCoord.x, y: currentMouseCoord.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
+                    drawWidget.x = currentMouseCoord.x
+                    drawWidget.y = currentMouseCoord.y
+                    drawWidget.width = 0
+                    drawWidget.height = 0
+
+                    this.svgContainer.addWidget(drawWidget)
+                    this.#drawWidgetEditBox = this.editListener.select(drawWidget)
+                }
             }
         }
         this.dragListener.onDragMove = (e) => {
@@ -55,7 +56,10 @@ export class DrawListener {
             }
         }
         this.dragListener.onDragEnd = (e) => {
-            this.newDraw()
+            if (e.param.init && e.param.init.widget.width < 15 && e.param.init.widget.height < 15) {
+                this.selectListener.deSelectAll()
+                this.svgContainer.removeWidget(e.param.init.widget)
+            }
             if (e.param.init) e.param.initFn(null as any)
         }
     }

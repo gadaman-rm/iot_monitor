@@ -12,13 +12,13 @@ export class EditListener {
     }
 
     public set onModeChange(fn: (mode: Mode) => void) { this.#onModeChange = fn }
-    public set mode(mode : Mode) { 
-        if(this.#mode !== mode) {
-            this.#mode = mode 
-            if(this.#onModeChange) this.#onModeChange(mode)
+    public set mode(mode: Mode) {
+        if (this.#mode !== mode) {
+            this.#mode = mode
+            if (this.#onModeChange) this.#onModeChange(mode)
         }
     }
-    public get mode() { return this.#mode  }
+    public get mode() { return this.#mode }
 
     select(selectedWidget: IWidgets | null) {
         if (selectedWidget && !this.svgContainer.findWidgetEditBox(selectedWidget)) {
@@ -73,8 +73,14 @@ export class EditListener {
                         otherEditBoxs.map((item) => {
                             item.editBox.width = e.width
                             item.widget.width = e.width
-                            item.editBox.height = e.height
-                            item.widget.height = e.height
+                            // if(item.widget.hRatio) {
+                            //     const height = e.width * item.widget.hRatio
+                            //     item.editBox.height = height
+                            //     item.widget.height = height
+                            // } else { 
+                            //     item.editBox.height = e.height
+                            //     item.widget.height = e.height
+                            // }
                             return item
                         })
                         break
