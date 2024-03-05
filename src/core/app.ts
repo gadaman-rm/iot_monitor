@@ -7,7 +7,13 @@ export type IWidgetEditBox = { id: string, editBox: EditBox }
 
 export class App {
     widgetEditBox: IWidgetEditBox[]
-    constructor(private appRef: HTMLDivElement, public svgContainer: SvgContainer, public sidebar: Sidebar, public listener: Listener,  public widgets: IWidgets[] = []) {
+    constructor(
+        private appRef: HTMLDivElement,
+        public svgContainer: SvgContainer,
+        public sidebar: Sidebar,
+        public listener: Listener,
+        public widgets: IWidgets[] = []
+    ) {
         this.appRef.appendChild(this.svgContainer)
         this.appRef.appendChild(sidebar)
         this.widgetEditBox = []

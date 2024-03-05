@@ -21,15 +21,10 @@ export class Listener {
             this.svgContainer.zoom = zoom
             this.svgContainer.pan = pan
         }
-        this.selectListener.onSelect = (widget, deselect) => {
-            if(this.editListener.mode === 'view') {
-                if (!deselect) {
-                    this.editListener.select(widget)
-                } else {
-                    this.selectListener.deSelectAll()
-                    this.editListener.select(widget)
-                }
-            }
-        }
+        this.selectListener.addListener('select-change', (e) => {
+            this.editListener.select(e)
+            console.log(e);
+            
+        })
     }
 }

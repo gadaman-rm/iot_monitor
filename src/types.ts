@@ -12,6 +12,7 @@ export { EditListener as IEditListener } from './core/listener/EditListener'
 export { SelectListener as ISelectListener } from './core/listener/SelectListener'
 export { DrawListener as IDrawListener } from './core/listener/DrawListener'
 export { ZoomPanListener as IZoomPanListener } from './core/listener/ZoomPanListener'
+export { EventEmitter as IEventEmitter } from 'eventemitter3'
 export {
     DragListener as IDragListener,
     KeyShortcatListener as IKeyShortcatListener,

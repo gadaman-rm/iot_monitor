@@ -1,9 +1,22 @@
 :host {
     --md-icon-button-icon-size: 32px;
+
+    // --md-outlined-text-field-label-text-color: green;
+    // --md-outlined-text-field-input-text-color: green;
+    // --md-filled-text-field-focus-active-indicator-color: green;
+    // --md-filled-text-field-input-text-placeholder-color: green;
+    --md-filled-text-field-container-color: transparent;
+
+
+    --g-sidebar-tab-color: #777;
+    --g-sidebar-tab-select-color: darkgray;
+    --g-sidebar-panel-color: #777;
 }
 
+
+
 .toolbox {
-    flex-direction: column;
+    flex-direction: column !important;
 }
 
 .header {
@@ -12,7 +25,7 @@
     justify-content: space-between;
     width: 100%;
     height: 3rem;
-    background-color: rgb(25, 118, 210);
+    background-color: darkkhaki; /*rgb(25, 118, 210); */
     color: #fff;
 
     &_title {
@@ -30,6 +43,22 @@
     }
 }
 
+.property-box {
+    width: 100%;
+    flex-direction: column;
+    overflow-wrap: break-word;
+    flex-wrap: wrap;
+}
+
+#properties {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-block-start: 2rem;
+    margin-inline: 2rem;
+}
+
 #widgets {
     display: flex;
     flex-direction: row;
@@ -43,12 +72,12 @@
     flex-grow: 1;
     width: 5rem;
     height: 5rem;
-    border: 1px solid red;
+    border: 1px solid gray;
     cursor: pointer;
 
     &--selected {
-        background-color: red;
-        color: green;
+        background-color: gray;
+        color: #232323;
         cursor: inherit;
     }
 }

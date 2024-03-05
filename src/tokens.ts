@@ -12,6 +12,7 @@ import {
     IDrawListener,
     IZoomPanListener,
     IDragListener,
+    IEventEmitter,
 } from './types'
 import { MoveDragInit } from './core/listener/SelectListener'
 
@@ -29,6 +30,7 @@ export const SelectListener = token<ISelectListener>('SelectListener')
 export const DrawListener = token<IDrawListener>('DrawListener')
 export const EditListener = token<IEditListener>('EditListener')
 export const Listener = token<IListener>('Listener')
+export const EventEmitter = token<IEventEmitter>('EventEmitter')
 
 // ********************** core components **********************
 export const Sidebar = token<ISidebar>('Sidebar')
