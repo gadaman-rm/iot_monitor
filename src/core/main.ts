@@ -6,12 +6,14 @@ import './app.scss'
 import { container } from '../container'
 import { App } from '../tokens'
 
-const slTest = document.createElement('div')
-slTest.innerHTML =`
-<div is='g-slider' width="200" x="200" y="400">
-</div>
-`
+// const slTest = document.createElement('div')
+// slTest.innerHTML =`
+// <div is='g-slider' width="200" x="200" y="400">
+// </div>
+// `
 
 const app = container.get(App)
-app.push(slTest as any)
+console.log(app)
+
+// app.push(slTest as any)
 // startTest(app, 500)

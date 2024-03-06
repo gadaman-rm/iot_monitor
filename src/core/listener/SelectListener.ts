@@ -74,5 +74,5 @@ export class SelectListener {
         }
     }
     selectAll() { this.svgContainer.widgets.forEach(item => this.emittSelect(item)) }
-    deSelectAll() { this.svgContainer.removeWidgetEditBox() }
+    deSelectAll() { this.svgContainer.removeAllEditBox() }
 }

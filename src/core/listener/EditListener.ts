@@ -33,7 +33,7 @@ export class EditListener {
     public get mode() { return this.#mode }
 
     select(selectedWidget: IWidgets | null) {
-        if (selectedWidget && !this.svgContainer.findWidgetEditBox(selectedWidget)) {
+        if (selectedWidget && !this.svgContainer.findEditBoxByWidgetId(selectedWidget)) {
             const x = +selectedWidget.getAttribute('x')!
             const y = +selectedWidget.getAttribute('y')!
             const width = +selectedWidget.getAttribute('width')!
@@ -115,7 +115,7 @@ export class EditListener {
                 selectedWidget.y = e.detail.y
             })
             editBox.addEventListener('edit-end', () => { setTimeout(() => { this.mode = 'view' }, 0) })
-            this.svgContainer.addWidgetEditBox(selectedWidget, editBox)
+            this.svgContainer.addEditBox(selectedWidget, editBox)
             return editBox
         }
     }
