@@ -5,7 +5,6 @@ import './app.scss'
 // import { startTest } from './test'
 import { container } from '../container'
 import { App } from '../tokens'
-import { startTest } from "./test"
 
 const slTest = document.createElement('div')
 slTest.innerHTML =`
@@ -15,4 +14,4 @@ slTest.innerHTML =`
 
 const app = container.get(App)
 app.push(slTest as any)
-startTest(app, 500)
+// startTest(app, 500)

@@ -21,10 +21,6 @@ export class Listener {
             this.svgContainer.zoom = zoom
             this.svgContainer.pan = pan
         }
-        this.selectListener.addListener('select-change', (e) => {
-            this.editListener.select(e)
-            console.log(e);
-            
-        })
+        this.selectListener.addListener('select-change', (e) => this.editListener.select(e))
     }
 }

@@ -34,5 +34,5 @@ export function registerInjections() {
     injected(IListener, SvgContainer, ZoomPanListener, SelectListener, EditListener)
 
     // ********************** core components **********************
-    injected(ISidebar, EventEmitter, EditListener, DrawListener)
+    injected(ISidebar, EventEmitter, EditListener, DrawListener, SelectListener)
 }

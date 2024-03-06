@@ -7,6 +7,7 @@ import { MdIconButton } from "@material/web/iconbutton/icon-button"
 import { EditBox, strToWidgets } from "@gadaman-rm/iot-widgets"
 import { MdFilledTextField } from "@material/web/textfield/filled-text-field"
 import EventEmitter from "eventemitter3"
+import { SelectListener } from "../../listener/SelectListener"
 
 const template = document.createElement('template')
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
@@ -23,7 +24,7 @@ export class Sidebar extends HTMLDivElement {
     widthRef: MdFilledTextField
     heightRef: MdFilledTextField
     rotateRef: MdFilledTextField
-    constructor(public eventEmitter: EventEmitter, public editListener: EditListener, public drawListener: DrawListener) {
+    constructor(public eventEmitter: EventEmitter, public editListener: EditListener, public drawListener: DrawListener, public selectListener: SelectListener) {
         super()
         this.attachShadow({ mode: 'open' })
         this.shadowRoot!.appendChild(template.content.cloneNode(true))
@@ -36,23 +37,6 @@ export class Sidebar extends HTMLDivElement {
         this.widthRef = this.shadowRoot!.querySelector('#width')!
         this.heightRef = this.shadowRoot!.querySelector('#height')!
         this.rotateRef = this.shadowRoot!.querySelector('#rotate')!
-
-        this.editListener.svgContainer.addEventListener('select-change', (e) => {
-            if(e.detail.selects.length > 0) {
-                const editBox = e.detail.selects[0].editBox as EditBox
-                this.xRef.value = editBox.x.toString()
-                this.yRef.value = editBox.y.toString()
-                this.widthRef.value = editBox.width.toString()
-                this.heightRef.value = editBox.height.toString()
-                this.rotateRef.value = editBox.rotate.toString()
-            } else {
-                this.xRef.value = ""
-                this.yRef.value = ""
-                this.widthRef.value = ""
-                this.heightRef.value = ""
-                this.rotateRef.value = ""
-            }
-        })
     }
 
     // attributeUpdate(attributeName: any, oldValue: string, newValue: string) { }
@@ -70,6 +54,41 @@ export class Sidebar extends HTMLDivElement {
             } else {
                 this.select(null) 
                 document.body.style.cursor = "inherit"
+            }
+        })
+
+        this.selectListener.addListener('select-change', (e) => {
+            if(this.editListener.svgContainer.editBoxforWidgets.length === 1) {
+                const { editBox } = this.editListener.svgContainer.editBoxforWidgets[0]
+                this.xRef.value = editBox.x.toString()
+                this.yRef.value = editBox.y.toString()
+                this.widthRef.value = editBox.width.toString()
+                this.heightRef.value = editBox.height.toString()
+                this.rotateRef.value = editBox.rotate.toString()
+
+                editBox.addEventListener('edit', (e) => {
+                    this.xRef.value = e.detail.x.toString()
+                    this.yRef.value = e.detail.y.toString()
+                    this.widthRef.value = e.detail.width.toString()
+                    this.heightRef.value = e.detail.height.toString()
+                    this.rotateRef.value = e.detail.rotate.toString()
+                })
+
+                this.editListener.svgContainer.addEventListener('editbox-remove', (e) => {
+                    if(editBox.id === e.detail.remove.editBox.id) {
+                        this.xRef.value = ""
+                        this.yRef.value = ""
+                        this.widthRef.value = ""
+                        this.heightRef.value = ""
+                        this.rotateRef.value = ""
+                    }
+                })
+            } else {
+                this.xRef.value = ""
+                this.yRef.value = ""
+                this.widthRef.value = ""
+                this.heightRef.value = ""
+                this.rotateRef.value = ""
             }
         })
     }
