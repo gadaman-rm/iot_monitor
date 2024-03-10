@@ -13,6 +13,7 @@ import {
     IZoomPanListener,
     IDragListener,
     IEventEmitter,
+    IContextMenu,
 } from './types'
 import { MoveDragInit } from './core/listener/SelectListener'
 
@@ -34,3 +35,4 @@ export const EventEmitter = token<IEventEmitter>('EventEmitter')
 
 // ********************** core components **********************
 export const Sidebar = token<ISidebar>('Sidebar')
+export const ContextMenu = token<IContextMenu>('ContextMenu')

@@ -2,13 +2,16 @@ import { SvgContainer } from "@gadaman-rm/iot-widgets"
 import { SelectListener } from "./SelectListener"
 import { ZoomPanListener } from "./ZoomPanListener"
 import { EditListener } from "./EditListener"
+import { ContextMenu } from "../components"
 
 export class Listener {
-    svgContainer: SvgContainer
-    zoomPanListener: ZoomPanListener
-    selectListener: SelectListener
-    editListener: EditListener
-    constructor(svgContainer: SvgContainer, zoomPanListener: ZoomPanListener, selectListener: SelectListener, editListener: EditListener) {
+    constructor(
+        public contextMenu: ContextMenu,
+        public svgContainer: SvgContainer,
+        public zoomPanListener: ZoomPanListener,
+        public selectListener: SelectListener,
+        public editListener: EditListener
+    ) {
         this.svgContainer = svgContainer
         this.zoomPanListener = zoomPanListener
         this.selectListener = selectListener

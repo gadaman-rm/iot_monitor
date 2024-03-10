@@ -22,5 +22,6 @@ export {
 
 // ********************** core components **********************
 export { 
-    Sidebar as ISidebar 
+    Sidebar as ISidebar,
+    ContextMenu as IContextMenu,
 } from './core/components'
