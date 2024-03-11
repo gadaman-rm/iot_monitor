@@ -25,4 +25,5 @@ export { ShortcutListener as IShortcutListener } from "./core/listener/ShortcutL
 export { 
     Sidebar as ISidebar,
     ContextMenu as IContextMenu,
+    Toolbar as IToolbar,
 } from './core/components'

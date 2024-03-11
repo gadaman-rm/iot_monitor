@@ -15,6 +15,7 @@ import {
     IEventEmitter,
     IContextMenu,
     IShortcutListener,
+    IToolbar,
 } from './types'
 import { MoveDragInit } from './core/listener/SelectListener'
 
@@ -38,3 +39,4 @@ export const EventEmitter = token<IEventEmitter>('EventEmitter')
 // ********************** core components **********************
 export const Sidebar = token<ISidebar>('Sidebar')
 export const ContextMenu = token<IContextMenu>('ContextMenu')
+export const Toolbar = token<IToolbar>('Toolbar')

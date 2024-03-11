@@ -1,17 +1,27 @@
 import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
 import EventEmitter from "eventemitter3"
+import { Toolbar } from "../components"
 
 export type Mode = 'edit' | 'view' | 'draw'
 export type EmitterEventType = 'modechange'
 
 export class EditListener {
-    svgContainer: SvgContainer
     #mode!: Mode
-    // modeChangeEvent: CustomEvent<ModeChangeEvent>
-    constructor(svgContainer: SvgContainer, public eventEmitter: EventEmitter) {
+    constructor(public svgContainer: SvgContainer, public eventEmitter: EventEmitter, public toolbar: Toolbar) {
         this.svgContainer = svgContainer
         this.mode = 'view'
-        // this.modeChangeEvent = new CustomEvent<ModeChangeEvent>("mode-change", { detail: { mode: '' } as any })
+        this.toolbar.addEventListener('toolbar-click', e => {
+            if(e.detail.type === 'save') {
+                const widgets = this.svgContainer.widgets.map(item => {
+                    const { id, x, y, width, height, ratio, rotate, originStr } = item
+                    const is = item.getAttribute('is')!
+                    
+                    return { is, id, x, y, width, height, ratio, rotate, originStr }
+                })
+                console.log({widgets})
+                
+            }
+        })
     }
 
     addListener(events: 'modechange', fn: (mode: Mode) => void): void
@@ -94,14 +104,6 @@ export class EditListener {
                         otherEditBoxs.map((item) => {
                             item.editBox.width = e.detail.width
                             item.widget.width = e.detail.width
-                            // if(item.widget.hRatio) {
-                            //     const height = e.detail.width * item.widget.hRatio
-                            //     item.editBox.height = height
-                            //     item.widget.height = height
-                            // } else { 
-                            //     item.editBox.height = e.detail.height
-                            //     item.widget.height = e.detail.height
-                            // }
                             return item
                         })
                         break
@@ -119,14 +121,4 @@ export class EditListener {
             return editBox
         }
     }
-
-    //********************************* Events *********************************
-    // addEventListener(type: 'mode-change', listener: (e: { detail: ModeChangeEvent }) => void, options?: boolean | AddEventListenerOptions | undefined): void
-    // // @ts-ignore: Unreachable code error
-    // addEventListener(type: unknown, listener: unknown, options?: unknown): void
-
-    // removeEventListener(type: 'mode-change', listener: (e: { detail: ModeChangeEvent }) => void, options?: boolean | EventListenerOptions | undefined): void
-    // // @ts-ignore: Unreachable code error
-    // removeEventListener(type: unknown, listener: unknown, options?: unknown): void
-    //********************************* *********************************
 }

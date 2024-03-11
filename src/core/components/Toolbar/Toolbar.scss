@@ -1,0 +1,27 @@
+:host {
+    --toolbar-height: var(--g-toolbar-height, 50px);
+}
+
+#root {
+    position: absolute;
+    inset-inline-start: 0px;
+    inset-block-start: 0px;
+    background-color: #666;
+    width: 100dvw;
+    height: var(--toolbar-height);
+    display: flex;
+    align-items: center;
+    padding-inline: 0.5rem;
+}
+
+#save {
+    fill: burlywood;
+
+    &:hover {
+        opacity: 0.85;
+    }
+
+    &:active {
+        opacity: 0.65;
+    }
+}

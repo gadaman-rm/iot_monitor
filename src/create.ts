@@ -2,13 +2,16 @@ import { SvgContainer } from "@gadaman-rm/iot-widgets"
 import { App } from "./core/app"
 import { Listener } from "./core/listener"
 import { DragListener, KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
-import { ContextMenu, Sidebar } from "./core/components"
+import { ContextMenu, Sidebar, Toolbar } from "./core/components"
 
 export function createApp(
 	contextMenu: ContextMenu,
 	svgContainer: SvgContainer,
-	sidebar: Sidebar, listener: Listener) {
-	return new App(document.querySelector<HTMLDivElement>("#app")!, contextMenu, svgContainer, sidebar, listener, [])
+	sidebar: Sidebar, 
+	toolbar: Toolbar,
+	listener: Listener
+	) {
+	return new App(document.querySelector<HTMLDivElement>("#app")!, contextMenu, svgContainer, sidebar, toolbar, listener, [])
 }
 export function createSvgContainer() { return new SvgContainer([], { x: 0, y: 0 }, 1) }
 export function createZoomListener() { return new ZoomListener() }
