@@ -3,11 +3,13 @@ import { SelectListener } from "./SelectListener"
 import { ZoomPanListener } from "./ZoomPanListener"
 import { EditListener } from "./EditListener"
 import { ContextMenu } from "../components"
+import { ShortcutListener } from "./ShortcutListener"
 
 export class Listener {
     constructor(
         public contextMenu: ContextMenu,
         public svgContainer: SvgContainer,
+        public ShortcutListener: ShortcutListener,
         public zoomPanListener: ZoomPanListener,
         public selectListener: SelectListener,
         public editListener: EditListener

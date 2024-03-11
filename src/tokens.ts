@@ -14,6 +14,7 @@ import {
     IDragListener,
     IEventEmitter,
     IContextMenu,
+    IShortcutListener,
 } from './types'
 import { MoveDragInit } from './core/listener/SelectListener'
 
@@ -26,6 +27,7 @@ export const PanListener = token<CreatePanListenerFn>('PanListener')
 export const KeyShortcatListener = token<CreateKeyShortcatListenerFn>('KeyShortcatListener')
 export const DragListener = token<IDragListener<MoveDragInit>>('DragListener')
 
+export const ShortcutListener = token<IShortcutListener>('ShortcutListener')
 export const ZoomPanListener = token<IZoomPanListener>('ZoomPanListener')
 export const SelectListener = token<ISelectListener>('SelectListener')
 export const DrawListener = token<IDrawListener>('DrawListener')

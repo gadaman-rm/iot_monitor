@@ -1,31 +1,23 @@
-import { KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
+import { PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
 import { zoomer } from "../utility/zoomer"
 import { paner } from "../utility/paner"
 import { Point, point } from "@gadaman-rm/iot-widgets/math"
 import { SvgContainer } from "@gadaman-rm/iot-widgets"
+import { ShortcutListener } from "./ShortcutListener"
 
 export class ZoomPanListener {
-    svgContainer: SvgContainer
-    panListener: PanListener<{ clientX: number, clientY: number }>
-    zoomListener: ZoomListener
-    digit0keyListener: KeyShortcatListener
     #onZoomPan?: (zoom: number, pan: Point) => void
     constructor(
-        svgContainer: SvgContainer,
-        panListener: PanListener<{ clientX: number, clientY: number }>,
-        zoomListener: ZoomListener,
-        digit0keyListener: KeyShortcatListener
-    ) {
-        this.svgContainer = svgContainer
-        this.panListener = panListener
-        this.zoomListener = zoomListener
-        this.digit0keyListener = digit0keyListener
-        this.initHandler()
-    }
+        public svgContainer: SvgContainer,
+        public panListener: PanListener<{ clientX: number, clientY: number }>,
+        public zoomListener: ZoomListener,
+        public shortcutListener: ShortcutListener,
+    ) { this.initHandler() }
+
     public set onZoomPan(fn: (zoom: number, pan: Point) => void) { this.#onZoomPan = fn }
 
     initHandler() {
-        this.digit0keyListener.onKeyDown = (e) => { if (e.ctrlKey) this.defaultZoomPan() }
+        this.shortcutListener.addEventListener('shortcut-press', e => { if (e.type === 'reset-zoom-pan') this.defaultZoomPan() })
         this.panListener.onPanStart = (e) => {
             const pan = this.svgContainer.pan
             e.param.initFn({ clientX: e.clientX - pan.x, clientY: e.clientY - pan.y })

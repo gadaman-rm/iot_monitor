@@ -1,7 +1,7 @@
 import { Container, injected } from 'brandi'
 import { createApp, createDragListener, createKeyShortcatListener, createPanListener, createSvgContainer, createZoomListener } from './create'
-import { App, ContextMenu, DragListener, DrawListener, EditListener, EventEmitter, KeyShortcatListener, Listener, PanListener, RootContainer, SelectListener, Sidebar, SvgContainer, ZoomListener, ZoomPanListener } from './tokens'
-import { ISidebar, IEditListener, IListener, ISelectListener, IZoomPanListener, IDrawListener, IEventEmitter, IContextMenu } from './types'
+import { App, ContextMenu, DragListener, DrawListener, EditListener, EventEmitter, KeyShortcatListener, Listener, PanListener, RootContainer, SelectListener, ShortcutListener, Sidebar, SvgContainer, ZoomListener, ZoomPanListener } from './tokens'
+import { ISidebar, IEditListener, IListener, ISelectListener, IZoomPanListener, IDrawListener, IEventEmitter, IContextMenu, IShortcutListener } from './types'
 
 export function registerBindings(container: Container) {
     container.bind(RootContainer).toConstant(container)
@@ -10,9 +10,10 @@ export function registerBindings(container: Container) {
     container.bind(SvgContainer).toInstance(createSvgContainer).inSingletonScope()
     container.bind(ZoomListener).toInstance(createZoomListener).inSingletonScope()
     container.bind(PanListener).toInstance(createPanListener).inSingletonScope()
-    container.bind(KeyShortcatListener).toInstance(createKeyShortcatListener).inSingletonScope()
+    container.bind(KeyShortcatListener).toInstance(createKeyShortcatListener).inTransientScope()
     container.bind(DragListener).toInstance(createDragListener).inTransientScope()
     
+    container.bind(ShortcutListener).toInstance(IShortcutListener).inSingletonScope()
     container.bind(ZoomPanListener).toInstance(IZoomPanListener).inSingletonScope()
     container.bind(SelectListener).toInstance(ISelectListener).inSingletonScope()
     container.bind(DrawListener).toInstance(IDrawListener).inSingletonScope()
@@ -27,12 +28,13 @@ export function registerBindings(container: Container) {
 
 export function registerInjections() {
     injected(createApp, ContextMenu, SvgContainer, Sidebar, Listener)
-    injected(IZoomPanListener, SvgContainer, PanListener, ZoomListener, KeyShortcatListener)
+    injected(IZoomPanListener, SvgContainer, PanListener, ZoomListener, ShortcutListener)
     injected(createDragListener, SvgContainer)
-    injected(ISelectListener, SvgContainer, EditListener, DragListener, EventEmitter)
+    injected(ISelectListener, SvgContainer, ShortcutListener, EditListener, DragListener, EventEmitter)
     injected(IDrawListener, SvgContainer, EditListener, SelectListener, DragListener as any)
     injected(IEditListener, SvgContainer, EventEmitter)
-    injected(IListener, ContextMenu, SvgContainer, ZoomPanListener, SelectListener, EditListener)
+    injected(IListener, ContextMenu, SvgContainer, ShortcutListener, ZoomPanListener, SelectListener, EditListener)
+    injected(IShortcutListener, EventEmitter)
 
     // ********************** core components **********************
     injected(ISidebar, EventEmitter, EditListener, DrawListener, SelectListener)

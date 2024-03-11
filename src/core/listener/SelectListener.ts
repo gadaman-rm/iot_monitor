@@ -3,6 +3,7 @@ import { DragListener } from "@gadaman-rm/iot-widgets/event"
 import { point } from "@gadaman-rm/iot-widgets/math"
 import { EditListener } from "./EditListener"
 import EventEmitter from "eventemitter3"
+import { ShortcutListener } from "./ShortcutListener"
 
 export interface MoveDragInit {
     active: boolean
@@ -16,11 +17,7 @@ export interface MoveDragInit {
 export type EmitterEventType = 'select-change'
 
 export class SelectListener {
-    svgContainer: SvgContainer
-    dragListener: DragListener<MoveDragInit>
-    constructor(svgContainer: SvgContainer, public editListener: EditListener, dragListener: DragListener<MoveDragInit>, public eventEmitter: EventEmitter) {
-        this.svgContainer = svgContainer
-        this.dragListener = dragListener
+    constructor(public svgContainer: SvgContainer, public shortcutListener: ShortcutListener, public editListener: EditListener, public dragListener: DragListener<MoveDragInit>, public eventEmitter: EventEmitter) {
         this.initHandler()
     }
 
@@ -35,6 +32,20 @@ export class SelectListener {
     emittSelect(widget: IWidgets) { this.eventEmitter.emit('select-change' as EmitterEventType, widget) }
 
     initHandler() {
+        this.shortcutListener.addEventListener('shortcut-press', e => {
+            switch (e.type) {
+                case 'selecte-all':
+                    this.selectAll()
+                    break
+                case 'delete-selected':
+                    this.svgContainer.editBoxforWidgets.forEach(item => {
+                        this.svgContainer.removeEditBox(item.editBox)
+                        this.svgContainer.removeWidget(item.widget)
+                    })
+                    break
+            }
+        }
+        )
         this.dragListener.onDragStart = (e) => {
             if (this.editListener.mode !== 'draw') {
                 const widget = e.target as IWidgets
@@ -66,8 +77,8 @@ export class SelectListener {
         }
         this.dragListener.onDragEnd = (e) => {
             const widgetId = (e.target as any).getAttribute('id')
-            if(this.editListener.mode === 'view') {
-                if(!e.ctrlKey || (widgetId === 'app' || !widgetId)) this.deSelectAll()
+            if (this.editListener.mode === 'view') {
+                if (!e.ctrlKey || (widgetId === 'app' || !widgetId)) this.deSelectAll()
                 if (e.param.init && e.param.init.widget) this.emittSelect(e.param.init.widget)
             }
             if (e.param.init) e.param.initFn(null as any)

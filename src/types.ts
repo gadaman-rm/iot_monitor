@@ -20,6 +20,7 @@ export {
     ZoomListener as IZoomListener
 } from '@gadaman-rm/iot-widgets/event'
 
+export { ShortcutListener as IShortcutListener } from "./core/listener/ShortcutListener"
 // ********************** core components **********************
 export { 
     Sidebar as ISidebar,
