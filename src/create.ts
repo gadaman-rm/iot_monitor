@@ -1,8 +1,8 @@
 import { SvgContainer } from "@gadaman-rm/iot-widgets"
-import { App } from "./core/app"
-import { Listener } from "./core/listener"
+import { App } from "./app/app"
+import { Listener } from "./app/listener"
 import { DragListener, KeyShortcatListener, PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
-import { ContextMenu, Sidebar, Toolbar } from "./core/components"
+import { ContextMenu, Sidebar, Toolbar } from "./app/components"
 
 export function createApp(
 	contextMenu: ContextMenu,
