@@ -3,15 +3,16 @@ import { DragListener } from "@gadaman-rm/iot-widgets/event"
 import { EditListener } from "./EditListener"
 import { MoveDragInit, SelectListener } from "./SelectListener"
 import { distancePointFromLine, point } from "@gadaman-rm/iot-widgets/math"
+import { StorageListener } from "./StorageListener"
 
 export class DrawListener {
-    svgContainer: SvgContainer
-    dragListener: DragListener<MoveDragInit>
     #drawWidget?: () => IWidgets | undefined | null
     #drawWidgetEditBox?: EditBox
-    constructor(svgContainer: SvgContainer, public editListener: EditListener, public selectListener: SelectListener, dragListener: DragListener<MoveDragInit>) {
-        this.svgContainer = svgContainer
-        this.dragListener = dragListener
+    constructor(public svgContainer: SvgContainer,
+        public editListener: EditListener,
+        public selectListener: SelectListener,
+        public dragListener: DragListener<MoveDragInit>,
+        public storageListener: StorageListener) {
         this.initHandler()
     }
 
@@ -23,8 +24,8 @@ export class DrawListener {
                 this.selectListener.deSelectAll()
                 const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
                 const drawWidget = this.#drawWidget()
-                if(drawWidget) {
-                    e.param.initFn!({ widget: drawWidget, x: currentMouseCoord.x, y: currentMouseCoord.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
+                if (drawWidget) {
+                    e.param.initFn!({ widget: drawWidget, x: currentMouseCoord.x, y: currentMouseCoord.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true, isMoved: false })
                     drawWidget.x = currentMouseCoord.x
                     drawWidget.y = currentMouseCoord.y
                     drawWidget.width = 0
@@ -48,6 +49,7 @@ export class DrawListener {
                 if (width > 0 && height > 0) {
                     init.widget.width = width
                     init.widget.height = height
+                    init.isMoved = true
 
                     const editBox = this.#drawWidgetEditBox!
                     editBox.width = width
@@ -56,11 +58,14 @@ export class DrawListener {
             }
         }
         this.dragListener.onDragEnd = (e) => {
+            let isWidgetRemoved = false
             if (e.param.init && e.param.init.widget.width < 15 && e.param.init.widget.height < 15) {
                 this.selectListener.deSelectAll()
                 this.svgContainer.removeWidget(e.param.init.widget)
+                isWidgetRemoved = true
             }
             if (e.param.init) e.param.initFn(null as any)
+            if(e.param.init?.isMoved && !isWidgetRemoved) this.storageListener.emitSaveChange(false)
         }
     }
 }

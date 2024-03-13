@@ -7,6 +7,7 @@ export type CreatePanListenerFn = ReturnType<typeof createPanListener<{ clientX:
 export type CreateKeyShortcatListenerFn = ReturnType<typeof createKeyShortcatListener>
 
 
+export { StorageListener as IStorageListener} from "./app/listener/StorageListener"
 export { Listener as IListener } from './app/listener'
 export { EditListener as IEditListener } from './app/listener/EditListener'
 export { SelectListener as ISelectListener } from './app/listener/SelectListener'
@@ -27,3 +28,4 @@ export {
     ContextMenu as IContextMenu,
     Toolbar as IToolbar,
 } from './app/components'
+

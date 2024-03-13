@@ -4,9 +4,11 @@ import { point } from "@gadaman-rm/iot-widgets/math"
 import { EditListener } from "./EditListener"
 import EventEmitter from "eventemitter3"
 import { ShortcutListener } from "./ShortcutListener"
+import { StorageListener } from "./StorageListener"
 
 export interface MoveDragInit {
     active: boolean
+    isMoved: boolean,
     widget: IWidgets
     x: number
     y: number
@@ -17,7 +19,13 @@ export interface MoveDragInit {
 export type EmitterEventType = 'select-change'
 
 export class SelectListener {
-    constructor(public svgContainer: SvgContainer, public shortcutListener: ShortcutListener, public editListener: EditListener, public dragListener: DragListener<MoveDragInit>, public eventEmitter: EventEmitter) {
+    constructor(public svgContainer: SvgContainer, 
+        public shortcutListener: ShortcutListener, 
+        public editListener: EditListener, 
+        public dragListener: DragListener<MoveDragInit>, 
+        public eventEmitter: EventEmitter,
+        public storageListener: StorageListener
+        ) {
         this.initHandler()
     }
 
@@ -55,7 +63,7 @@ export class SelectListener {
                     const { initFn } = e.param
                     if (widgetType !== 'g-editbox') {
                         const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
-                        initFn!({ widget, x: widget.x, y: widget.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true })
+                        initFn!({ widget, x: widget.x, y: widget.y, clientX: currentMouseCoord.x, clientY: currentMouseCoord.y, active: true, isMoved: false })
                     }
                 }
             }
@@ -73,6 +81,7 @@ export class SelectListener {
 
                 init.widget.x = x
                 init.widget.y = y
+                init.isMoved = true
             }
         }
         this.dragListener.onDragEnd = (e) => {
@@ -82,6 +91,7 @@ export class SelectListener {
                 if (e.param.init && e.param.init.widget) this.emittSelect(e.param.init.widget)
             }
             if (e.param.init) e.param.initFn(null as any)
+            if(e.param.init?.isMoved) this.storageListener.emitSaveChange(false)
         }
     }
     selectAll() { this.svgContainer.widgets.forEach(item => this.emittSelect(item)) }

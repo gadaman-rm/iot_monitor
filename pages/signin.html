@@ -1,0 +1,49 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>signin</title>
+    <link rel="style" type="text/css" href="./src/components/custom-element.scss" />
+    <script type="module" src="./signin/signin.ts"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div id="signinPart" class="signinPart show">
+        <h1>SIGNIN</h1>
+        <md-outlined-text-field label="tel" type="tel" id="username"> </md-outlined-text-field>
+        <md-outlined-button id="signinBtn">signin</md-outlined-button>
+        <md-text-button id="signupBtn">signup</md-text-button>
+      </div>
+      <div id="verifyPart" class="verifyPart hide" style="display: none">
+        <h1>VERIFY</h1>
+        <div id="verificationIcon" class="verificationIcon">
+          <div id="smsIcon" class="smsIcon show">
+            <svg xmlns="http://www.w3.org/2000/svg" height="60px" width="60px" viewBox="0 0 24 24" fill="#000000">
+              <path d="M0 0h24v24H0V0z" fill="none" />
+              <path
+                d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 14H5.17L4 17.17V4h16v12zM7 9h2v2H7zm8 0h2v2h-2zm-4 0h2v2h-2z"
+              />
+            </svg>
+          </div>
+          <div id="remainTime" class="remainTime hide">60</div>
+        </div>
+        <md-outlined-text-field label="code" type="text" id="code"> </md-outlined-text-field>
+        <md-outlined-button id="verifyBtn">verify</md-outlined-button>
+      </div>
+      <div id="finishPart" class="finishPart hide" style="display: none">
+        <div id="tickIcon" class="tickIcon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="150px" height="150px" viewBox="0 0 24 24" fill="#55aa55">
+            <path d="M0 0h24v24H0V0z" fill="none" />
+            <path
+              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.42L10 14.17l-2.59-2.58L6 13l4 4 8-8z"
+            />
+          </svg>
+        </div>
+        <md-text-button id="panelBtn" class="panelBtn">Panel</md-text-button>
+      </div>
+    </div>
+  </body>
+</html>

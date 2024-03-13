@@ -1,12 +1,16 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    Home
-    <script type="module" src="/src/main/main.ts"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>panel</title>
+    <script type="module" src="./pages/panel/index.ts"></script>
+  </head>
+  <body>
+    <md-text-button id="signoutBtn">Signout</md-text-button>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </body>
 </html>

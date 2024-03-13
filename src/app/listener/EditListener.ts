@@ -1,25 +1,26 @@
 import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
 import EventEmitter from "eventemitter3"
 import { Toolbar } from "../components"
+import { updatePlan } from "../../api/edit"
+import { StorageListener } from "./StorageListener"
+import { OK_SYM } from "../../api/utility"
 
 export type Mode = 'edit' | 'view' | 'draw'
 export type EmitterEventType = 'modechange'
 
 export class EditListener {
     #mode!: Mode
-    constructor(public svgContainer: SvgContainer, public eventEmitter: EventEmitter, public toolbar: Toolbar) {
+    constructor(public svgContainer: SvgContainer, public eventEmitter: EventEmitter, public toolbar: Toolbar, public storageListener: StorageListener) {
         this.svgContainer = svgContainer
         this.mode = 'view'
         this.toolbar.addEventListener('toolbar-click', e => {
             if(e.detail.type === 'save') {
                 const widgets = this.svgContainer.widgets.map(item => {
-                    const { id, x, y, width, height, ratio, rotate, originStr } = item
-                    const is = item.getAttribute('is')!
-                    
-                    return { is, id, x, y, width, height, ratio, rotate, originStr }
+                    let attrs = { } as any
+                    for (const key of item.getAttributeNames()) attrs[key] = item.getAttribute(key)!
+                    return attrs
                 })
-                console.log({widgets})
-                
+                updatePlan(this.storageListener.planeName, widgets).then(data => { if(data[OK_SYM])  this.storageListener.emitSaveChange(true) })
             }
         })
     }

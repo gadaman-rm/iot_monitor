@@ -1,11 +1,12 @@
 import EventEmitter from "eventemitter3"
+import { StorageListener } from "./StorageListener"
 
 export type ShortcutEvent = { 
     type: 'reset-zoom-pan' | 'delete-selected' | 'selecte-all' 
 }
 export type EmitterEventType = 'shortcut-press'
 export class ShortcutListener {
-    constructor(public eventEmitter: EventEmitter) {
+    constructor(public eventEmitter: EventEmitter, public storageListener: StorageListener) {
         // document.addEventListener('keydown', this.handleKeyDown)
         document.addEventListener('keyup', this.handleKeyUp)
     }
@@ -22,6 +23,7 @@ export class ShortcutListener {
                 break
             case 'Delete': 
                 this.emittSelect('delete-selected')
+                this.storageListener.emitSaveChange(false)
                 break
         }
     }

@@ -16,6 +16,7 @@ import {
     IContextMenu,
     IShortcutListener,
     IToolbar,
+    IStorageListener,
 } from './types'
 import { MoveDragInit } from './app/listener/SelectListener'
 
@@ -33,6 +34,7 @@ export const ZoomPanListener = token<IZoomPanListener>('ZoomPanListener')
 export const SelectListener = token<ISelectListener>('SelectListener')
 export const DrawListener = token<IDrawListener>('DrawListener')
 export const EditListener = token<IEditListener>('EditListener')
+export const StorageListener = token<IStorageListener>('StorageListener')
 export const Listener = token<IListener>('Listener')
 export const EventEmitter = token<IEventEmitter>('EventEmitter')
 
