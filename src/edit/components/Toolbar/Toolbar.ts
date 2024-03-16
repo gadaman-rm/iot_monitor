@@ -40,6 +40,10 @@ export class Toolbar extends HTMLDivElement {
             this.dispatchEvent(this.toolbarClickEvent)
         })
     }
+    mode(mode: 'edit' | 'view') {
+        if(mode === 'view') this.saveRef.style.display = 'none'
+        if(mode === 'edit') this.saveRef.style.display = 'flex'
+    }
 
     public get id() { return this.getAttribute('id')! }
     public set id(id: string) { this.setAttribute('id', id) }
@@ -53,7 +57,7 @@ export class Toolbar extends HTMLDivElement {
         }
     }
 
-    idUpdate(oldId: string, newId: string) { console.log(oldId, newId) }
+    idUpdate(_oldId: string, _newId: string) { }
 
     // @ts-ignore: Unreachable code error
     addEventListener<K extends keyof CustomElementEventMap>(type: K, listener: (this: HTMLDivElement, ev: CustomElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void

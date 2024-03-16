@@ -1,6 +1,7 @@
-import { createApp, createKeyShortcatListener, createPanListener, createSvgContainer, createZoomListener } from "./create"
+import { createApp, createKeyShortcatListener, createPanListener, createSvgContainer, createView, createZoomListener } from "./create"
 
 export type CreateAppFn = ReturnType<typeof createApp>
+export type CreateViewFn = ReturnType<typeof createView>
 export type CreateSvgContainerFn = ReturnType<typeof createSvgContainer>
 export type CreateZoomListenerFn = ReturnType<typeof createZoomListener>
 export type CreatePanListenerFn = ReturnType<typeof createPanListener<{ clientX: number, clientY: number }>>
@@ -9,6 +10,7 @@ export type CreateKeyShortcatListenerFn = ReturnType<typeof createKeyShortcatLis
 
 export { StorageListener as IStorageListener} from "./edit/listener/StorageListener"
 export { Listener as IListener } from './edit/listener'
+export { ViewListener as IViewListener } from "./view/ViewListener"
 export { EditListener as IEditListener } from './edit/listener/EditListener'
 export { SelectListener as ISelectListener } from './edit/listener/SelectListener'
 export { DrawListener as IDrawListener } from './edit/listener/DrawListener'
@@ -28,4 +30,3 @@ export {
     ContextMenu as IContextMenu,
     Toolbar as IToolbar,
 } from './edit/components'
-

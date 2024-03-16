@@ -17,12 +17,15 @@ import {
     IShortcutListener,
     IToolbar,
     IStorageListener,
+    CreateViewFn,
+    IViewListener,
 } from './types'
 import { MoveDragInit } from './edit/listener/SelectListener'
 
 export const RootContainer = token<Container>('RootContainer')
 
 export const App = token<CreateAppFn>('App')
+export const View = token<CreateViewFn>('View')
 export const SvgContainer = token<CreateSvgContainerFn>('SvgContainer')
 export const ZoomListener = token<CreateZoomListenerFn>('ZoomListener')
 export const PanListener = token<CreatePanListenerFn>('PanListener')
@@ -36,6 +39,7 @@ export const DrawListener = token<IDrawListener>('DrawListener')
 export const EditListener = token<IEditListener>('EditListener')
 export const StorageListener = token<IStorageListener>('StorageListener')
 export const Listener = token<IListener>('Listener')
+export const ViewListener = token<IViewListener>('ViewListener')
 export const EventEmitter = token<IEventEmitter>('EventEmitter')
 
 // ********************** core components **********************

@@ -24,8 +24,6 @@ export class Listener {
         }
         this.selectListener.addListener('select-change', (e) => this.editListener.select(e))
         this.storageListener.addEventListener('storage-change', e => {
-            console.log(e);
-            
             if (e.isSaved) document.title = e.name
             else document.title = e.name + "*"
         })
