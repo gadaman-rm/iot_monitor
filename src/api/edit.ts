@@ -43,7 +43,7 @@ export interface SavePlan {
     _id: string
     msg: string
 }
-export const svaePlan = async (planName: string, widgets: GetPlan['widgets']) => {
+export const savePlan = async (planName: string, widgets: GetPlan['widgets']) => {
     return errorHandler<SavePlan>(() => fetch('/api/save_plan', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
@@ -60,5 +60,16 @@ export const updatePlan = async (planName: string, widgets: GetPlanJsonWidget[])
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: planName, widgets: JSON.stringify(widgets) })
+    }))
+}
+
+export interface DeletePlan {
+    msg: string
+}
+export const deletePlan = async (id: string) => {
+    return errorHandler<DeletePlan>(() => fetch('/api/delete_plan', {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ _id: id })
     }))
 }

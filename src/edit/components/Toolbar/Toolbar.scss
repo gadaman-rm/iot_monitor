@@ -11,10 +11,10 @@
     height: var(--toolbar-height);
     display: flex;
     align-items: center;
-    padding-inline: 0.5rem;
+    justify-content: space-between;
 }
 
-#save {
+md-icon-button {
     fill: burlywood;
 
     &:hover {

@@ -18,7 +18,7 @@ import {
     IToolbar,
     IStorageListener,
 } from './types'
-import { MoveDragInit } from './app/listener/SelectListener'
+import { MoveDragInit } from './edit/listener/SelectListener'
 
 export const RootContainer = token<Container>('RootContainer')
 

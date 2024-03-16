@@ -9,7 +9,8 @@ export default defineConfig({
                 main: resolve(__dirname, 'index.html'),
                 "pages/signin": resolve(__dirname, 'pages/signin.html'),
                 "pages/signup": resolve(__dirname, 'pages/signup.html'),
-                "app": resolve(__dirname, 'app.html'),
+                "edit": resolve(__dirname, 'edit.html'),
+                "view": resolve(__dirname, 'view.html'),
             }
         }
     },
@@ -65,7 +66,12 @@ export default defineConfig({
                 target: 'https://coolpanel.ir:2525/',
                 changeOrigin: true,
                 methods: ['POST']
-            }
+            },
+            '/api/delete_plan': {
+                target: 'https://coolpanel.ir:2525/',
+                changeOrigin: true,
+                methods: ['POST']
+            },
         },
     },
 })

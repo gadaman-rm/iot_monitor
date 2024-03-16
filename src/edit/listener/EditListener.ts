@@ -14,13 +14,20 @@ export class EditListener {
         this.svgContainer = svgContainer
         this.mode = 'view'
         this.toolbar.addEventListener('toolbar-click', e => {
-            if(e.detail.type === 'save') {
-                const widgets = this.svgContainer.widgets.map(item => {
-                    let attrs = { } as any
-                    for (const key of item.getAttributeNames()) attrs[key] = item.getAttribute(key)!
-                    return attrs
-                })
-                updatePlan(this.storageListener.planeName, widgets).then(data => { if(data[OK_SYM])  this.storageListener.emitSaveChange(true) })
+            switch (e.detail.type) {
+                case 'save': {
+                    const widgets = this.svgContainer.widgets.map(item => {
+                        let attrs = {} as any
+                        for (const key of item.getAttributeNames()) attrs[key] = item.getAttribute(key)!
+                        return attrs
+                    })
+                    updatePlan(this.storageListener.planeName, widgets).then(data => { if (data[OK_SYM]) this.storageListener.emitSaveChange(true) })
+                    break
+                }
+                case 'panel': {
+                    window.location.href = `/`
+                    break
+                }
             }
         })
     }

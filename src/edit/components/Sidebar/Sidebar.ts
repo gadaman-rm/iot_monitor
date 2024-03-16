@@ -4,7 +4,7 @@ import cssText from './Sidebar.scss?inline'
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
 import { MdIconButton } from "@material/web/iconbutton/icon-button"
-import { strToWidgets } from "@gadaman-rm/iot-widgets"
+import { isToWidgets } from "@gadaman-rm/iot-widgets"
 import { MdFilledTextField } from "@material/web/textfield/filled-text-field"
 import EventEmitter from "eventemitter3"
 import { SelectListener } from "../../listener/SelectListener"
@@ -136,7 +136,7 @@ export class Sidebar extends HTMLDivElement {
             if (item === elem) {
                 selected = item
                 selected.classList.add('widget--selected')
-                this.drawListener.drawWidget = () => strToWidgets(item.getAttribute('name') as any)
+                this.drawListener.drawWidget = () => isToWidgets(item.getAttribute('name') as any)
             }
             else item.classList.remove('widget--selected')
         })

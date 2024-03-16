@@ -117,10 +117,10 @@
   resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.12.tgz#c57c8afbb4054a3ab8317591a0b7320360b444ae"
   integrity sha512-T1QyPSDCyMXaO3pzBkF96E8xMkiRYbUEZADd29SyPGabqxMViNoii+NcK7eWJAEoU6RZyEm5lVSIjTmcdoB9HA==
 
-"@gadaman-rm/iot-widgets@^0.1.12":
-  version "0.1.12"
-  resolved "https://npm.pkg.github.com/download/@gadaman-rm/iot-widgets/0.1.12/5d9246ca3c69a933a31f9cc9dd0af6f33c1e53de#5d9246ca3c69a933a31f9cc9dd0af6f33c1e53de"
-  integrity sha512-gAWloaCv9aVoei//2k1qNwSq+gQ05tv4R/6pmwkou/flpM+L0jv7iYNlZCaB63SMx/ZqNuDjR21JL/KGZREQpQ==
+"@gadaman-rm/iot-widgets@^0.1.14":
+  version "0.1.14"
+  resolved "https://npm.pkg.github.com/download/@gadaman-rm/iot-widgets/0.1.14/065cf67dca2fc20586ce6194d2d355c3b3bfcdab#065cf67dca2fc20586ce6194d2d355c3b3bfcdab"
+  integrity sha512-thPyDMWj0I5JH/VB3UgGw85HKwr021YetL4WfukYi7xGBymgvY7vjTjBVySXZje6TPt2eodgf/IaZpzezbcpew==
   dependencies:
     "@material/web" "^1.3.0"
     material-components-web "^14.0.0"
