@@ -67,10 +67,12 @@ md-text-button {
 
     &:hover {
       opacity: 0.85;
+      cursor: pointer;
     }
 
     &:active {
       opacity: 0.65;
+      cursor: pointer;
     }
   }
 }
