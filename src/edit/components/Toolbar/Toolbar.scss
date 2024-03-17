@@ -1,12 +1,12 @@
 :host {
-    --toolbar-height: var(--g-toolbar-height, 50px);
+    --toolbar-height: var(--g-toolbar-height, 100px);
 }
 
 #root {
     position: absolute;
     inset-inline-start: 0px;
     inset-block-start: 0px;
-    background-color: #666;
+    background-color: #CED4DA;
     width: 100dvw;
     height: var(--toolbar-height);
     display: flex;
@@ -15,7 +15,13 @@
 }
 
 md-icon-button {
-    fill: burlywood;
+    padding-inline: 0.5rem;
+}
+
+md-icon-button svg {
+    fill: #42424a;
+    width: 1.5rem;
+    height: 1.5rem;
 
     &:hover {
         opacity: 0.85;

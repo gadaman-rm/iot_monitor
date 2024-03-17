@@ -16,7 +16,7 @@ export class View {
         public widgets: IWidgets[] = []
     ) {
         this.appRef.appendChild(this.svgContainer)
-        toolbar.style.setProperty('--g-toolbar-height', '50px')
+        toolbar.style.setProperty('--g-toolbar-height', '60px')
         this.appRef.appendChild(toolbar)
         this.widgetEditBox = []
         widgets.forEach(widget => this.svgContainer.addWidget(widget))  

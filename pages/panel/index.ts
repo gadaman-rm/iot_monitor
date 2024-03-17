@@ -99,6 +99,12 @@ export class Panel extends HTMLElement {
       dialogPlanNameRef.value = ""
     })
 
+    dialogBackdropRef.addEventListener('click', e => {
+      dialogRef.open = false
+      dialogBackdropRef.style.display = 'none'
+      dialogPlanNameRef.value = ""
+    })
+
     dialogOkButtonRef.addEventListener('click', e => {
       savePlan(this.newPlanName, "[]").then(saveData => { if (saveData[OK_SYM]) window.location.href = `/edit.html` })
 

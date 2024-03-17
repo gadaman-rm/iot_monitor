@@ -18,8 +18,8 @@ export class App {
     ) {
         this.appRef.appendChild(this.contextMenu)
         this.appRef.appendChild(this.svgContainer)
-        toolbar.style.setProperty('--g-toolbar-height', '50px')
-        sidebar.style.setProperty('--g-sidebar-margin-start', '50px')
+        toolbar.style.setProperty('--g-toolbar-height', '60px')
+        sidebar.style.setProperty('--g-sidebar-margin-start', '60px')
         this.appRef.appendChild(toolbar)
         this.appRef.appendChild(sidebar)
         this.widgetEditBox = []

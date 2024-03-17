@@ -1,6 +1,12 @@
 //index.scss
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
 
+:root {
+  --md-filled-text-field-container-color: #fff;
+  --md-filled-text-field-label-text-font: system-ui;
+  --md-filled-text-field-input-text-font: system-ui;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
@@ -29,7 +35,7 @@ md-text-button {
 }
 
 .plans {
-  color: green;
+  color: #232323;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -108,10 +114,11 @@ h1 {
     inset-inline-start: 0%;
     inset-block-start: 50%;
     transform: translate(0%, -50%);
-    padding: 2rem;
+    padding-inline: 0.7rem;
+    padding-block-end: 0.5rem;
     border: #2b2b2b;
     border-radius: 0.3rem;
-    background: #545454;
+    background: #fff;
     color: white;
     transition: all .5s;
     padding-block-start: 2rem;
@@ -143,7 +150,7 @@ h1 {
 
     & svg {
       width: 20px;
-      fill: white;
+      fill: #2b2b2b;
     }
   }
 
@@ -152,10 +159,11 @@ h1 {
     align-items: center;
     justify-content: center;
     user-select: none;
-    width: 100px;
-    height: 34px;
-    margin-block-start: 0.6rem;
-    background-color: blue;
+    width: 4rem;
+    border-radius: 0.4rem;
+    height: 1.5rem;
+    margin-block-start: 1rem;
+    background-color: cornflowerblue;
     &:hover {
       opacity: 0.8;
     }
@@ -164,4 +172,8 @@ h1 {
       opacity: 0.5;
     }
   }
+}
+
+.modal_plan-name {
+
 }
