@@ -1,0 +1,88 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  overflow: hidden;
+}
+
+#signoutBtn {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+
+.container {
+  width: 1200px;
+  height: 600px;
+  background-color: var(--color-surface-container-low);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#plans {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-block-start: 0.5rem;
+  margin-inline: 1rem;
+  gap: 2rem;
+}
+
+.plan-item {
+  position: relative;
+  display: flex;
+  user-select: none;
+  width: 150px;
+  height: 150px;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-surface-container-high);
+  color: var(--color-on-surface);
+  border-radius: var(--border-corner-medium);
+}
+
+.plan-actions {
+  position: absolute;
+  inset-inline-end: 0.1rem;
+  inset-block-end: 0.1rem;
+
+  & svg {
+    fill: var(--color-primary);
+    width: 1rem;
+    height: 1rem;
+
+    &:hover {
+      opacity: 0.85;
+      cursor: pointer;
+    }
+
+    &:active {
+      opacity: 0.65;
+      cursor: pointer;
+    }
+  }
+}
+
+h1 {
+  margin: 0.5rem;
+}
+
+#new-plan svg {
+  fill: var(--color-on-primary);
+}
+
+.new-plan {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-block-start: 1rem;
+}

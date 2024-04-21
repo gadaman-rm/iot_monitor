@@ -1,16 +1,38 @@
-<!-- index.html -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>panel</title>
-    <script type="module" src="./pages/panel/index.ts"></script>
+    <script type="module" src="src/pages/index.ts"></script>
   </head>
   <body>
     <md-text-button id="signoutBtn">Signout</md-text-button>
+
+    <md-dialog id="modal">
+      <div slot="headline">New Plan</div>
+      <form slot="content" id="form-id" method="dialog">
+        <md-filled-text-field
+          class="modal_plan-name"
+          label="Plan Name"
+          type="text"
+        ></md-filled-text-field>
+      </form>
+      <div slot="actions">
+        <md-text-button id="modal_ok">Ok</md-text-button>
+      </div>
+    </md-dialog>
+
     <div class="container">
-      <router-outlet></router-outlet>
+      <h1>Panel</h1>
+      <md-filled-icon-button id="new-plan">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+          <path
+            d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344V280H168c-13.3 0-24-10.7-24-24s10.7-24 24-24h64V168c0-13.3 10.7-24 24-24s24 10.7 24 24v64h64c13.3 0 24 10.7 24 24s-10.7 24-24 24H280v64c0 13.3-10.7 24-24 24s-24-10.7-24-24z"
+          />
+        </svg>
+      </md-filled-icon-button>
+      <div id="plans"></div>
     </div>
   </body>
 </html>

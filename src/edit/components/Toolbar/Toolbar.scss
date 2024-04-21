@@ -1,33 +1,25 @@
 :host {
-    --toolbar-height: var(--g-toolbar-height, 100px);
+  --toolbar-height: var(--g-toolbar-height, 100px);
+  --toolbar-color: var(--color-surface-container-highest, #ced4da);
+  --toolbar-on-color: var(--color-on-surface, #42424a);
 }
 
 #root {
-    position: absolute;
-    inset-inline-start: 0px;
-    inset-block-start: 0px;
-    background-color: #CED4DA;
-    width: 100dvw;
-    height: var(--toolbar-height);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  position: absolute;
+  inset-inline-start: 0px;
+  inset-block-start: 0px;
+  background-color: var(--toolbar-color);
+  color: var(--toolbar-on-color);
+  width: 100dvw;
+  height: var(--toolbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-md-icon-button {
-    padding-inline: 0.5rem;
-}
-
-md-icon-button svg {
-    fill: #42424a;
-    width: 1.5rem;
-    height: 1.5rem;
-
-    &:hover {
-        opacity: 0.85;
-    }
-
-    &:active {
-        opacity: 0.65;
-    }
+md-filled-icon-button {
+  padding-inline: 0.5rem;
+  svg {
+    fill: var(--color-on-primary);
+  }
 }
