@@ -3,7 +3,7 @@ import { registerBindings, registerInjections } from "./register"
 
 export const container = createContainer()
 export function createChildContainer() {
-	return createContainer().extend(container)
+  return createContainer().extend(container)
 }
 
 registerInjections()

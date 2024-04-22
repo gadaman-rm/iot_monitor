@@ -9,7 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@gadaman-rm/iot-widgets": "^0.2.0",
+    "@gadaman-rm/iot-widgets": "^0.2.1",
     "@material/web": "^1.4.1",
     "brandi": "^5.0.0",
     "eventemitter3": "^5.0.1"

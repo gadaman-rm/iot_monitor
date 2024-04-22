@@ -1,29 +1,29 @@
 :host {
-    --context-menu-width: var(--g-context-menu-width, 200px);
-    --context-menu-color: var(--g-context-menu-color, #fff);
-    --context-menu-item-height: var(--g-context-menu-item-height, 30px);
-    --context-menu-item-color: var(--g-context-menu-item-color, #fff);
+  --context-menu-width: var(--g-context-menu-width, 200px);
+  --context-menu-color: var(--g-context-menu-color, #fff);
+  --context-menu-item-height: var(--g-context-menu-item-height, 30px);
+  --context-menu-item-color: var(--g-context-menu-item-color, #fff);
 }
 
 #root {
-    display: none;
-    flex-direction: column;
-    padding-inline: 0.55rem;
-    gap: 0.2rem;
-    position: fixed;
-    background-color: var(--context-menu-color);
-    width: var(--context-menu-width);
-    z-index: 100;
+  display: none;
+  flex-direction: column;
+  padding-inline: 0.55rem;
+  gap: 0.2rem;
+  position: fixed;
+  background-color: var(--context-menu-color);
+  width: var(--context-menu-width);
+  z-index: 100;
 }
 
 menu {
-    padding: 0px;
-    margin: 0px;
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    align-items: center;
-    text-align: center;
-    height: var(--context-menu-item-height);
-    background-color: var(--context-menu-item-color);
+  padding: 0px;
+  margin: 0px;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  height: var(--context-menu-item-height);
+  background-color: var(--context-menu-item-color);
 }
