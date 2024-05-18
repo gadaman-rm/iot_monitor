@@ -41,6 +41,7 @@ export class DrawListener {
             clientY: currentMouseCoord.y,
             active: true,
             isMoved: false,
+            mode: this.editListener.mode,
           })
           drawWidget.x = currentMouseCoord.x
           drawWidget.y = currentMouseCoord.y

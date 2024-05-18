@@ -3,42 +3,6 @@ import { MenuJsonItem } from "@gadaco/iot-widgets/components"
 export const MENU_JSON_DATA: MenuJsonItem[] = [
   {
     type: "sub-item",
-    text: "Order",
-    icon: `<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="layers"><path d="M2.5,10.56l9,5.2a1,1,0,0,0,1,0l9-5.2a1,1,0,0,0,0-1.73l-9-5.2a1,1,0,0,0-1,0l-9,5.2a1,1,0,0,0,0,1.73ZM12,5.65l7,4-7,4.05L5,9.69Zm8.5,7.79L12,18.35,3.5,13.44a1,1,0,0,0-1.37.36,1,1,0,0,0,.37,1.37l9,5.2a1,1,0,0,0,1,0l9-5.2a1,1,0,0,0,.37-1.37A1,1,0,0,0,20.5,13.44Z"></path></svg>`,
-    menuJsonItems: [
-      {
-        type: "item",
-        id: "rise-top",
-        text: "Rise to Top",
-        hint: "",
-        icon: "",
-      },
-      {
-        type: "item",
-        id: "rise",
-        text: "Rise",
-        hint: "",
-        icon: "",
-      },
-      {
-        type: "item",
-        id: "lower",
-        text: "Lower",
-        hint: "",
-        icon: "",
-      },
-      {
-        type: "item",
-        id: "lower-bottom",
-        text: "Lower to Bottom",
-        hint: "",
-        icon: "",
-      },
-    ],
-  },
-
-  {
-    type: "sub-item",
     text: "Align",
     icon: `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.29,13.29,4,18.59V17a1,1,0,0,0-2,0v4a1,1,0,0,0,.08.38,1,1,0,0,0,.54.54A1,1,0,0,0,3,22H7a1,1,0,0,0,0-2H5.41l5.3-5.29a1,1,0,0,0-1.42-1.42ZM5.41,4H7A1,1,0,0,0,7,2H3a1,1,0,0,0-.38.08,1,1,0,0,0-.54.54A1,1,0,0,0,2,3V7A1,1,0,0,0,4,7V5.41l5.29,5.3a1,1,0,0,0,1.42,0,1,1,0,0,0,0-1.42ZM21,16a1,1,0,0,0-1,1v1.59l-5.29-5.3a1,1,0,0,0-1.42,1.42L18.59,20H17a1,1,0,0,0,0,2h4a1,1,0,0,0,.38-.08,1,1,0,0,0,.54-.54A1,1,0,0,0,22,21V17A1,1,0,0,0,21,16Zm.92-13.38a1,1,0,0,0-.54-.54A1,1,0,0,0,21,2H17a1,1,0,0,0,0,2h1.59l-5.3,5.29a1,1,0,0,0,0,1.42,1,1,0,0,0,1.42,0L20,5.41V7a1,1,0,0,0,2,0V3A1,1,0,0,0,21.92,2.62Z"></path></svg>`,
     menuJsonItems: [
@@ -97,6 +61,42 @@ export const MENU_JSON_DATA: MenuJsonItem[] = [
         text: "H-distribute center",
         hint: "",
         icon: `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m19 9.6072v-1h2c1.3333 0 1.3333-2 0-2h-2v-1c0-.55228-.44772-1-1-1h-12c-.55228 0-1 .44772-1 1v1h-2c-1.3333 0-1.3333 2 0 2h2v1c0 .55229.44772 1 1 1h12c.55228 0 1-.44772 1-1zm-12-1v-2h10v2zm11.999 9.7855v-1h2c1.3333 0 1.3333-2 0-2h-2v-1c0-.55228-.44772-1-1-1h-12c-.55228 0-1 .44772-1 1v1h-2c-1.3333 0-1.3333 2 0 2h2v1c0 .55228.44772 1 1 1h12c.55228 0 1-.44772 1-1zm-12-1v-2h10v2z"/></svg>`,
+      },
+    ],
+  },
+
+  {
+    type: "sub-item",
+    text: "Order",
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 24 24" id="layers"><path d="M2.5,10.56l9,5.2a1,1,0,0,0,1,0l9-5.2a1,1,0,0,0,0-1.73l-9-5.2a1,1,0,0,0-1,0l-9,5.2a1,1,0,0,0,0,1.73ZM12,5.65l7,4-7,4.05L5,9.69Zm8.5,7.79L12,18.35,3.5,13.44a1,1,0,0,0-1.37.36,1,1,0,0,0,.37,1.37l9,5.2a1,1,0,0,0,1,0l9-5.2a1,1,0,0,0,.37-1.37A1,1,0,0,0,20.5,13.44Z"></path></svg>`,
+    menuJsonItems: [
+      {
+        type: "item",
+        id: "rise-top",
+        text: "Rise to Top",
+        hint: "",
+        icon: "",
+      },
+      {
+        type: "item",
+        id: "rise",
+        text: "Rise",
+        hint: "",
+        icon: "",
+      },
+      {
+        type: "item",
+        id: "lower",
+        text: "Lower",
+        hint: "",
+        icon: "",
+      },
+      {
+        type: "item",
+        id: "lower-bottom",
+        text: "Lower to Bottom",
+        hint: "",
+        icon: "",
       },
     ],
   },

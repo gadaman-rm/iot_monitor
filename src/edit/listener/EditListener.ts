@@ -1,16 +1,19 @@
 import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
 import EventEmitter from "eventemitter3"
-import { Toolbar, ToolbarControl } from "../components"
+import { Tool, Toolbar, ToolbarControl } from "../components"
 import { updatePlan } from "../../api/edit"
 import { StorageListener } from "./StorageListener"
 import { OK_SYM } from "../../api/utility"
+import { MenuJson } from "@gadaco/iot-widgets/components"
+import { MENU_JSON_DATA } from "../json-data/menuJsonData"
 
-export type Mode = "edit" | "view" | "draw" | "selecting"
-export type EmitterEventType = "modechange"
+export type Mode = "edit" | "view" | "draw" | "select"
+export type EmitterEventType = "modechange" | "toolchange"
 
 export class EditListener {
   #mode!: Mode
   constructor(
+    public menuJson: MenuJson,
     public svgContainer: SvgContainer,
     public eventEmitter: EventEmitter,
     public toolbar: Toolbar,
@@ -18,6 +21,50 @@ export class EditListener {
     public storageListener: StorageListener,
   ) {
     this.svgContainer = svgContainer
+    this.init()
+  }
+
+  public get tool(): Tool {
+    return this.toolbar.tool as any
+  }
+  public set tool(tool: Tool) {
+    this.toolbar.tool = tool
+  }
+
+  addListener(events: "modechange", fn: (mode: Mode) => void): void
+  addListener(events: "toolchange", fn: (mode: Tool) => void): void
+  addListener(events: EmitterEventType, fn: (...args: any[]) => void) {
+    this.eventEmitter.on(events, fn)
+  }
+
+  removeListener(events: "modechange", fn: (mode: Mode) => void): void
+  removeListener(events: "toolchange", fn: (mode: Tool) => void): void
+  removeListener(events: EmitterEventType, fn: (...args: any[]) => void) {
+    this.eventEmitter.removeListener(events, fn)
+  }
+
+  removeAllListeners(events: EmitterEventType) {
+    this.eventEmitter.removeAllListeners(events)
+  }
+
+  public set mode(mode: Mode) {
+    if (this.#mode !== mode) {
+      this.#mode = mode
+      this.eventEmitter.emit("modechange" as EmitterEventType, mode)
+    }
+  }
+  public get mode() {
+    return this.#mode
+  }
+
+  init() {
+    setTimeout(() => {
+      this.toolbar.tool = "mouse"
+      this.eventEmitter.emit("toolchange", this.toolbar.tool)
+    }, 0)
+    this.toolbar.addEventListener("toolbar-change", (e) => {
+      this.eventEmitter.emit("toolchange", e.detail.type)
+    })
     this.mode = "view"
     this.toolbarControl.addEventListener("toolbar-click", (e) => {
       switch (e.detail.type) {
@@ -39,32 +86,60 @@ export class EditListener {
         }
       }
     })
-  }
 
-  addListener(events: "modechange", fn: (mode: Mode) => void): void
-  addListener(events: EmitterEventType, fn: (...args: any[]) => void) {
-    this.eventEmitter.on(events, fn)
-  }
-
-  removeListener(events: "modechange", fn: (mode: Mode) => void): void
-  removeListener(events: EmitterEventType, fn: (...args: any[]) => void) {
-    this.eventEmitter.removeListener(events, fn)
-  }
-
-  removeAllListeners(events: EmitterEventType) {
-    this.eventEmitter.removeAllListeners(events)
-  }
-
-  public set mode(mode: Mode) {
-    if (this.#mode !== mode) {
-      this.#mode = mode
-      // this.modeChangeEvent.detail.mode = mode
-      // dispatchEvent(this.modeChangeEvent)
-      this.eventEmitter.emit("modechange" as EmitterEventType, mode)
-    }
-  }
-  public get mode() {
-    return this.#mode
+    this.menuJson.items = MENU_JSON_DATA
+    this.menuJson.addEventListener("menu-select", (e) => {
+      switch (e.detail.id) {
+        case "rise-top": {
+          this.svgContainer.riseToTop()
+          break
+        }
+        case "rise": {
+          this.svgContainer.rise()
+          break
+        }
+        case "lower": {
+          this.svgContainer.lower()
+          break
+        }
+        case "lower-bottom": {
+          this.svgContainer.lowerToBottom()
+          break
+        }
+        case "v-left": {
+          this.svgContainer.vlerticalLeft()
+          break
+        }
+        case "v-right": {
+          this.svgContainer.vlerticalRight()
+          break
+        }
+        case "v-center": {
+          this.svgContainer.vlerticalCenter()
+          break
+        }
+        case "v-distribute-center": {
+          this.svgContainer.vlerticalDistributeCenter()
+          break
+        }
+        case "h-top": {
+          this.svgContainer.horizontalTop()
+          break
+        }
+        case "h-bottom": {
+          this.svgContainer.horizontalBottom()
+          break
+        }
+        case "h-center": {
+          this.svgContainer.horizontalCenter()
+          break
+        }
+        case "h-distribute-center": {
+          this.svgContainer.horizontalDistributeCenter()
+          break
+        }
+      }
+    })
   }
 
   select(selectedWidget: IWidgets | null) {

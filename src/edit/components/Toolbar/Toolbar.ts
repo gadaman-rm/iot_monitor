@@ -1,15 +1,15 @@
 import "@material/web/iconbutton/filled-icon-button"
-// import { } from "@gadaco/iot-widgets/components"
-// import { MdFilledIconButton } from "@material/web/iconbutton/filled-icon-button"
 import htmlText from "./Toolbar.html?raw"
 import cssText from "./Toolbar.scss?inline"
+import { Tabs } from "@gadaco/iot-widgets/components"
 
 const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
 
-export interface ToolbarClickEvent {
+export type Tool = "mouse" | "select"
+export interface ToolbarChangeEvent {
   e: MouseEvent
-  type: "save" | "panel"
+  type: Tool
 }
 
 const TAG_NAME = `g-toolbar`
@@ -23,30 +23,19 @@ export class Toolbar extends HTMLDivElement {
     return ATTRIBUTES
   }
   rootRef: HTMLDivElement
-  // tabRef: Tajk
-  toolbarClickEvent: CustomEvent<ToolbarClickEvent>
+  tabRef: Tabs
+  toolbarChangeEvent: CustomEvent<ToolbarChangeEvent>
   constructor() {
     super()
     this.attachShadow({ mode: "open" })
     this.shadowRoot!.appendChild(template.content.cloneNode(true))
     this.setAttribute("is", TAG_NAME)
     this.rootRef = this.shadowRoot!.querySelector("#root")!
-    // this.saveRef = this.shadowRoot!.querySelector("#save")!
-    this.toolbarClickEvent = new CustomEvent<ToolbarClickEvent>(
-      "toolbar-click",
+    this.tabRef = this.shadowRoot!.querySelector("#tabs")!
+    this.toolbarChangeEvent = new CustomEvent<ToolbarChangeEvent>(
+      "toolbar-change",
       { detail: {} as any },
     )
-
-    // this.saveRef.addEventListener("click", (e) => {
-    //   this.toolbarClickEvent.detail.e = e
-    //   this.toolbarClickEvent.detail.type = "save"
-    //   this.dispatchEvent(this.toolbarClickEvent)
-    // })
-    //
-  }
-  mode(_mode: "edit" | "view") {
-    // if (mode === "view") this.saveRef.style.display = "none"
-    // if (mode === "edit") this.saveRef.style.display = "flex"
   }
 
   public get id() {
@@ -56,7 +45,22 @@ export class Toolbar extends HTMLDivElement {
     this.setAttribute("id", id)
   }
 
-  connectedCallback() {}
+  public get tool(): Tool {
+    return this.tabRef.tab as any
+  }
+  public set tool(tool: Tool) {
+    this.tabRef.tab = tool
+  }
+
+  connectedCallback() {
+    setTimeout(() => {
+      this.tabRef.onChange = (e) => {
+        this.toolbarChangeEvent.detail.e = e
+        this.toolbarChangeEvent.detail.type = e.param.role as any
+        this.dispatchEvent(this.toolbarChangeEvent)
+      }
+    }, 0)
+  }
   disconnectedCallback() {}
   attributeChangedCallback(
     attrName: (typeof ATTRIBUTES)[number],
@@ -87,7 +91,7 @@ export class Toolbar extends HTMLDivElement {
 }
 
 interface CustomElementEventMap extends HTMLElementEventMap {
-  "toolbar-click": { detail: ToolbarClickEvent }
+  "toolbar-change": { detail: ToolbarChangeEvent }
 }
 
 customElements.define(TAG_NAME, Toolbar, { extends: "div" })

@@ -125,6 +125,7 @@ export function registerInjections() {
   )
   injected(
     IEditListener,
+    MenuJson,
     SvgContainer,
     EventEmitter,
     Toolbar,
@@ -134,7 +135,6 @@ export function registerInjections() {
   injected(IStorageListener, SvgContainer, EventEmitter)
   injected(
     IListener,
-    MenuJson,
     SvgContainer,
     ShortcutListener,
     ZoomPanListener,

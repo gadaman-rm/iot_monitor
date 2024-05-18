@@ -1,7 +1,7 @@
-import { IWidgets, SvgContainer } from "@gadaco/iot-widgets"
+import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
 import { DragListener } from "@gadaco/iot-widgets/event"
 import { point } from "@gadaco/iot-widgets/math"
-import { EditListener } from "./EditListener"
+import { EditListener, Mode } from "./EditListener"
 import EventEmitter from "eventemitter3"
 import { ShortcutListener } from "./ShortcutListener"
 import { StorageListener } from "./StorageListener"
@@ -14,6 +14,7 @@ export interface MoveDragInit {
   y: number
   clientX: number
   clientY: number
+  mode: Mode
 }
 
 export type EmitterEventType = "select-change"
@@ -63,7 +64,17 @@ export class SelectListener {
       }
     })
     this.dragListener.onDragStart = (e) => {
-      if (this.editListener.mode !== "draw") {
+      if (this.editListener.mode === "select") {
+        const { initFn } = e.param
+        const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
+        initFn!({
+          clientX: currentMouseCoord.x,
+          clientY: currentMouseCoord.y,
+          active: true,
+          mode: this.editListener.mode,
+          widget: new EditBox(),
+        } as any)
+      } else if (this.editListener.mode !== "draw") {
         const widget = e.target as IWidgets
         const widgetType = widget.getAttribute("is")
         const widgetId = widget.getAttribute("id")
@@ -79,6 +90,7 @@ export class SelectListener {
               clientY: currentMouseCoord.y,
               active: true,
               isMoved: false,
+              mode: this.editListener.mode,
             })
           }
         }
@@ -86,7 +98,16 @@ export class SelectListener {
     }
     this.dragListener.onDragMove = (e) => {
       const { init } = e.param
-      if (init && init?.active) {
+      if (init && init.active && init.mode === "select") {
+        const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
+        const editBox = init.widget
+        editBox.x = init.clientX
+        editBox.y = init.clientY
+        editBox.width = currentMouseCoord.x - init.clientX
+        editBox.height = currentMouseCoord.y - init.clientY
+
+        this.svgContainer.addWidget(editBox)
+      } else if (init && init?.active && init.mode !== "draw") {
         const initMouseCoord = point(init.clientX, init.clientY)
         const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
 
@@ -101,14 +122,32 @@ export class SelectListener {
       }
     }
     this.dragListener.onDragEnd = (e) => {
-      const widgetId = (e.target as any).getAttribute("id")
-      if (this.editListener.mode === "view") {
-        if (!e.ctrlKey || widgetId === "app" || !widgetId) this.deSelectAll()
-        if (e.param.init && e.param.init.widget)
-          this.emittSelect(e.param.init.widget)
+      const { init } = e.param
+
+      if (init && init.active && init.mode === "select") {
+        const selects = this.svgContainer.widgetsInBox(
+          { x: init.widget.x, y: init.widget.y },
+          {
+            x: init.widget.x + init.widget.width,
+            y: init.widget.y + init.widget.height,
+          },
+        )
+        this.svgContainer.removeWidget(init.widget)
+        selects.forEach((item) => this.emittSelect(item))
+        this.editListener.tool = "mouse"
+        this.editListener.mode = "view"
+
+        if (e.param.init) e.param.initFn(null as any)
+      } else {
+        const widgetId = (e.target as any).getAttribute("id")
+        if (this.editListener.mode === "view") {
+          if (!e.ctrlKey || widgetId === "app" || !widgetId) this.deSelectAll()
+          if (e.param.init && e.param.init.widget)
+            this.emittSelect(e.param.init.widget)
+        }
+        if (e.param.init) e.param.initFn(null as any)
+        if (e.param.init?.isMoved) this.storageListener.emitSaveChange(false)
       }
-      if (e.param.init) e.param.initFn(null as any)
-      if (e.param.init?.isMoved) this.storageListener.emitSaveChange(false)
     }
   }
   selectAll() {

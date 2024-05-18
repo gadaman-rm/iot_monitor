@@ -4,12 +4,9 @@ import { ZoomPanListener } from "./ZoomPanListener"
 import { EditListener } from "./EditListener"
 import { ShortcutListener } from "./ShortcutListener"
 import { StorageListener } from "./StorageListener"
-import { MenuJson } from "@gadaco/iot-widgets/components"
-import { MENU_JSON_DATA } from "../json-data/menuJsonData"
 
 export class Listener {
   constructor(
-    public menuJson: MenuJson,
     public svgContainer: SvgContainer,
     public shortcutListener: ShortcutListener,
     public zoomPanListener: ZoomPanListener,
@@ -18,6 +15,11 @@ export class Listener {
     public storageListener: StorageListener,
   ) {
     this.initHandler()
+    this.editListener.addListener("toolchange", (e) => {
+      if (e === "select") this.editListener.mode = "select"
+      if (e === "mouse" && this.editListener.mode === "select")
+        this.editListener.mode = "view"
+    })
   }
 
   initHandler() {
@@ -34,60 +36,6 @@ export class Listener {
     })
     this.editListener.addListener("modechange", (e) => {
       if (e === "edit") this.storageListener.emitSaveChange(false)
-    })
-
-    this.menuJson.items = MENU_JSON_DATA
-    this.menuJson.addEventListener("menu-select", (e) => {
-      switch (e.detail.id) {
-        case "rise-top": {
-          this.svgContainer.riseToTop()
-          break
-        }
-        case "rise": {
-          this.svgContainer.rise()
-          break
-        }
-        case "lower": {
-          this.svgContainer.lower()
-          break
-        }
-        case "lower-bottom": {
-          this.svgContainer.lowerToBottom()
-          break
-        }
-        case "v-left": {
-          this.svgContainer.vlerticalLeft()
-          break
-        }
-        case "v-right": {
-          this.svgContainer.vlerticalRight()
-          break
-        }
-        case "v-center": {
-          this.svgContainer.vlerticalCenter()
-          break
-        }
-        case "v-distribute-center": {
-          this.svgContainer.vlerticalDistributeCenter()
-          break
-        }
-        case "h-top": {
-          this.svgContainer.horizontalTop()
-          break
-        }
-        case "h-bottom": {
-          this.svgContainer.horizontalBottom()
-          break
-        }
-        case "h-center": {
-          this.svgContainer.horizontalCenter()
-          break
-        }
-        case "h-distribute-center": {
-          this.svgContainer.horizontalDistributeCenter()
-          break
-        }
-      }
     })
   }
 }
