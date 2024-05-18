@@ -106,20 +106,25 @@ export class EditListener {
           this.svgContainer.lowerToBottom()
           break
         }
+        case "center": {
+          this.svgContainer.verticalCenter()
+          this.svgContainer.horizontalCenter()
+          break
+        }
         case "v-left": {
-          this.svgContainer.vlerticalLeft()
+          this.svgContainer.verticalLeft()
           break
         }
         case "v-right": {
-          this.svgContainer.vlerticalRight()
+          this.svgContainer.verticalRight()
           break
         }
         case "v-center": {
-          this.svgContainer.vlerticalCenter()
+          this.svgContainer.verticalCenter()
           break
         }
         case "v-distribute-center": {
-          this.svgContainer.vlerticalDistributeCenter()
+          this.svgContainer.verticalDistributeCenter()
           break
         }
         case "h-top": {

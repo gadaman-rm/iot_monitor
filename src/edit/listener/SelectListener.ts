@@ -65,6 +65,7 @@ export class SelectListener {
     })
     this.dragListener.onDragStart = (e) => {
       if (this.editListener.mode === "select") {
+        if (!e.ctrlKey) this.deSelectAll()
         const { initFn } = e.param
         const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
         initFn!({
