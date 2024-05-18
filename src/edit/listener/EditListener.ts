@@ -1,11 +1,11 @@
-import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
+import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
 import EventEmitter from "eventemitter3"
-import { Toolbar } from "../components"
+import { Toolbar, ToolbarControl } from "../components"
 import { updatePlan } from "../../api/edit"
 import { StorageListener } from "./StorageListener"
 import { OK_SYM } from "../../api/utility"
 
-export type Mode = "edit" | "view" | "draw"
+export type Mode = "edit" | "view" | "draw" | "selecting"
 export type EmitterEventType = "modechange"
 
 export class EditListener {
@@ -14,11 +14,12 @@ export class EditListener {
     public svgContainer: SvgContainer,
     public eventEmitter: EventEmitter,
     public toolbar: Toolbar,
+    public toolbarControl: ToolbarControl,
     public storageListener: StorageListener,
   ) {
     this.svgContainer = svgContainer
     this.mode = "view"
-    this.toolbar.addEventListener("toolbar-click", (e) => {
+    this.toolbarControl.addEventListener("toolbar-click", (e) => {
       switch (e.detail.type) {
         case "save": {
           const widgets = this.svgContainer.widgets.map((item) => {

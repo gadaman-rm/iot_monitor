@@ -1,4 +1,4 @@
-import { SvgContainer } from "@gadaman-rm/iot-widgets"
+import { SvgContainer } from "@gadaco/iot-widgets"
 import { ZoomPanListener } from "../edit/listener/ZoomPanListener"
 import { StorageListener } from "../edit/listener/StorageListener"
 

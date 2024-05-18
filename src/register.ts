@@ -10,7 +10,7 @@ import {
 } from "./create"
 import {
   App,
-  ContextMenu,
+  MenuJson,
   DragListener,
   DrawListener,
   EditListener,
@@ -24,11 +24,12 @@ import {
   Sidebar,
   StorageListener,
   SvgContainer,
-  Toolbar,
+  ToolbarControl,
   View,
   ViewListener,
   ZoomListener,
   ZoomPanListener,
+  Toolbar,
 } from "./tokens"
 import {
   ISidebar,
@@ -38,11 +39,12 @@ import {
   IZoomPanListener,
   IDrawListener,
   IEventEmitter,
-  IContextMenu,
+  IMenuJson,
   IShortcutListener,
-  IToolbar,
+  IToolbarControl,
   IStorageListener,
   IViewListener,
+  IToolbar,
 } from "./types"
 
 export function registerBindings(container: Container) {
@@ -80,13 +82,22 @@ export function registerBindings(container: Container) {
 
   // ********************** core components **********************
   container.bind(Sidebar).toInstance(ISidebar).inSingletonScope()
-  container.bind(ContextMenu).toInstance(IContextMenu).inSingletonScope()
+  container.bind(MenuJson).toInstance(IMenuJson).inSingletonScope()
   container.bind(Toolbar).toInstance(IToolbar).inSingletonScope()
+  container.bind(ToolbarControl).toInstance(IToolbarControl).inSingletonScope()
 }
 
 export function registerInjections() {
-  injected(createApp, ContextMenu, SvgContainer, Sidebar, Toolbar, Listener)
-  injected(createView, SvgContainer, Toolbar, ViewListener)
+  injected(
+    createApp,
+    MenuJson,
+    SvgContainer,
+    Sidebar,
+    Toolbar,
+    ToolbarControl,
+    Listener,
+  )
+  injected(createView, SvgContainer, ToolbarControl, ViewListener)
   injected(
     IZoomPanListener,
     SvgContainer,
@@ -112,11 +123,18 @@ export function registerInjections() {
     DragListener,
     StorageListener,
   )
-  injected(IEditListener, SvgContainer, EventEmitter, Toolbar, StorageListener)
+  injected(
+    IEditListener,
+    SvgContainer,
+    EventEmitter,
+    Toolbar,
+    ToolbarControl,
+    StorageListener,
+  )
   injected(IStorageListener, SvgContainer, EventEmitter)
   injected(
     IListener,
-    ContextMenu,
+    MenuJson,
     SvgContainer,
     ShortcutListener,
     ZoomPanListener,
@@ -129,5 +147,4 @@ export function registerInjections() {
 
   // ********************** core components **********************
   injected(ISidebar, EventEmitter, EditListener, DrawListener, SelectListener)
-  injected(IContextMenu, SvgContainer)
 }

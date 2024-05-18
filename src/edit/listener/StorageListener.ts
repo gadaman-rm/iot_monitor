@@ -1,4 +1,4 @@
-import { SvgContainer, isToWidgets } from "@gadaman-rm/iot-widgets"
+import { SvgContainer, isToWidgets } from "@gadaco/iot-widgets"
 import { GetPlanJsonWidget, getPlan } from "../../api/edit"
 import { OK_SYM } from "../../api/utility"
 import EventEmitter from "eventemitter3"

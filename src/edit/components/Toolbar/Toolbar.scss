@@ -1,25 +1,15 @@
 :host {
-  --toolbar-height: var(--g-toolbar-height, 100px);
-  --toolbar-color: var(--color-surface-container-highest, #ced4da);
+  --toolbar-width: var(--g-toolbar-height, 60px);
+  --toolbar-color: var(--color-surface-container-high, #ced4da);
   --toolbar-on-color: var(--color-on-surface, #42424a);
+  --g-tab-color: var(--toolbar-color);
+  --g-tab-on-color: var(--toolbar-on-color);
+  --g-tab-select-color: var(--color-primary);
+  --g-tab-margin-start: 60px;
+  --g-tab-item-size: 3.75rem;
 }
 
-#root {
-  position: absolute;
-  inset-inline-start: 0px;
-  inset-block-start: 0px;
-  background-color: var(--toolbar-color);
-  color: var(--toolbar-on-color);
-  width: 100dvw;
-  height: var(--toolbar-height);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-md-filled-icon-button {
-  padding-inline: 0.5rem;
-  svg {
-    fill: var(--color-on-primary);
-  }
+svg {
+  width: 3.75rem;
+  height: 3.75rem;
 }

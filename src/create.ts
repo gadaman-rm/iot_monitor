@@ -1,4 +1,4 @@
-import { SvgContainer } from "@gadaman-rm/iot-widgets"
+import { SvgContainer } from "@gadaco/iot-widgets"
 import { App } from "./edit/app"
 import { Listener } from "./edit/listener"
 import {
@@ -6,25 +6,28 @@ import {
   KeyShortcatListener,
   PanListener,
   ZoomListener,
-} from "@gadaman-rm/iot-widgets/event"
-import { ContextMenu, Sidebar, Toolbar } from "./edit/components"
+} from "@gadaco/iot-widgets/event"
+import { Sidebar, Toolbar, ToolbarControl } from "./edit/components"
 import { View } from "./view/view"
 import { ViewListener } from "./view/ViewListener"
+import { MenuJson } from "@gadaco/iot-widgets/components"
 
 export function createApp(
-  contextMenu: ContextMenu,
+  menuJson: MenuJson,
   svgContainer: SvgContainer,
   sidebar: Sidebar,
   toolbar: Toolbar,
+  toolbarControl: ToolbarControl,
   listener: Listener,
 ) {
-  toolbar.mode("edit")
+  toolbarControl.mode("edit")
   return new App(
     document.querySelector<HTMLDivElement>("#app")!,
-    contextMenu,
+    menuJson,
     svgContainer,
     sidebar,
     toolbar,
+    toolbarControl,
     listener,
     [],
   )
@@ -32,14 +35,14 @@ export function createApp(
 
 export function createView(
   svgContainer: SvgContainer,
-  toolbar: Toolbar,
+  toolbarControl: ToolbarControl,
   viewListener: ViewListener,
 ) {
-  toolbar.mode("view")
+  toolbarControl.mode("view")
   return new View(
     document.querySelector<HTMLDivElement>("#app")!,
     svgContainer,
-    toolbar,
+    toolbarControl,
     viewListener,
     [],
   )

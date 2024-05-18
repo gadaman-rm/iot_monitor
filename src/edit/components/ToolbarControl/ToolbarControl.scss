@@ -1,0 +1,25 @@
+:host {
+  --toolbar-height: var(--g-toolbar-height, 60px);
+  --toolbar-color: var(--color-surface-container-highest, #ced4da);
+  --toolbar-on-color: var(--color-on-surface, #42424a);
+}
+
+#root {
+  position: absolute;
+  inset-inline-start: 0px;
+  inset-block-start: 0px;
+  background-color: var(--toolbar-color);
+  color: var(--toolbar-on-color);
+  width: 100dvw;
+  height: var(--toolbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+md-filled-icon-button {
+  padding-inline: 0.5rem;
+  svg {
+    fill: var(--color-on-primary);
+  }
+}

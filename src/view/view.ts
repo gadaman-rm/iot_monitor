@@ -1,7 +1,7 @@
-import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
-import "@gadaman-rm/iot-widgets/components"
+import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
+import "@gadaco/iot-widgets/components"
 
-import { Toolbar } from "../edit/components"
+import { ToolbarControl } from "../edit/components"
 import { ViewListener } from "./ViewListener"
 
 export type IWidgetEditBox = { id: string; editBox: EditBox }
@@ -11,16 +11,16 @@ export class View {
   constructor(
     private appRef: HTMLDivElement,
     public svgContainer: SvgContainer,
-    public toolbar: Toolbar,
+    public toolbarControl: ToolbarControl,
     public viewListener: ViewListener,
     public widgets: IWidgets[] = [],
   ) {
     this.appRef.appendChild(this.svgContainer)
-    toolbar.style.setProperty("--g-toolbar-height", "60px")
-    this.appRef.appendChild(toolbar)
+    toolbarControl.style.setProperty("--g-toolbar-height", "60px")
+    this.appRef.appendChild(toolbarControl)
     this.widgetEditBox = []
     widgets.forEach((widget) => this.svgContainer.addWidget(widget))
-    this.toolbar.addEventListener("toolbar-click", (e) => {
+    this.toolbarControl.addEventListener("toolbar-click", (e) => {
       if (e.detail.type === "panel") window.location.href = `/`
     })
   }

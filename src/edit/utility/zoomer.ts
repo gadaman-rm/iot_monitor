@@ -1,4 +1,4 @@
-import { Point } from "@gadaman-rm/iot-widgets/math"
+import { Point } from "@gadaco/iot-widgets/math"
 
 export interface IZoomer {
   wheelDelta: number

@@ -1,6 +1,6 @@
 import "../theme"
-import { Modal } from "@gadaman-rm/iot-widgets/components"
-import "@gadaman-rm/iot-widgets/components"
+import { Modal } from "@gadaco/iot-widgets/components"
+import "@gadaco/iot-widgets/components"
 import "./index.scss"
 import { access, signOut } from "../api/auth"
 import "@material/web/button/text-button"

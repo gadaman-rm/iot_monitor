@@ -1,8 +1,8 @@
-import { EditBox, IWidgets, SvgContainer } from "@gadaman-rm/iot-widgets"
-import { DragListener } from "@gadaman-rm/iot-widgets/event"
+import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
+import { DragListener } from "@gadaco/iot-widgets/event"
 import { EditListener } from "./EditListener"
 import { MoveDragInit, SelectListener } from "./SelectListener"
-import { distancePointFromLine, point } from "@gadaman-rm/iot-widgets/math"
+import { distancePointFromLine, point } from "@gadaco/iot-widgets/math"
 import { StorageListener } from "./StorageListener"
 
 export class DrawListener {

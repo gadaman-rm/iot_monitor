@@ -1,52 +1,54 @@
 import "@material/web/iconbutton/filled-icon-button"
-// import { } from "@gadaco/iot-widgets/components"
-// import { MdFilledIconButton } from "@material/web/iconbutton/filled-icon-button"
-import htmlText from "./Toolbar.html?raw"
-import cssText from "./Toolbar.scss?inline"
+import { MdFilledIconButton } from "@material/web/iconbutton/filled-icon-button"
+import htmlText from "./ToolbarControl.html?raw"
+import cssText from "./ToolbarControl.scss?inline"
 
 const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
 
-export interface ToolbarClickEvent {
+export interface ToolbarControlClickEvent {
   e: MouseEvent
   type: "save" | "panel"
 }
 
-const TAG_NAME = `g-toolbar`
+const TAG_NAME = `g-toolbarcontrol`
 const ATTRIBUTES = ["id"] as const
-export class Toolbar extends HTMLDivElement {
-  initAttribute(name: string, defaultValue: string) {
-    if (!this.attributes.getNamedItem(name))
-      this.setAttribute(name, defaultValue)
-  }
+export class ToolbarControl extends HTMLDivElement {
   static get observedAttributes() {
     return ATTRIBUTES
   }
   rootRef: HTMLDivElement
-  // tabRef: Tajk
-  toolbarClickEvent: CustomEvent<ToolbarClickEvent>
+  saveRef: MdFilledIconButton
+  panelRef: MdFilledIconButton
+  toolbarClickEvent: CustomEvent<ToolbarControlClickEvent>
   constructor() {
     super()
     this.attachShadow({ mode: "open" })
     this.shadowRoot!.appendChild(template.content.cloneNode(true))
     this.setAttribute("is", TAG_NAME)
     this.rootRef = this.shadowRoot!.querySelector("#root")!
-    // this.saveRef = this.shadowRoot!.querySelector("#save")!
-    this.toolbarClickEvent = new CustomEvent<ToolbarClickEvent>(
+    this.saveRef = this.shadowRoot!.querySelector("#save")!
+    this.panelRef = this.shadowRoot!.querySelector("#panel")!
+    this.toolbarClickEvent = new CustomEvent<ToolbarControlClickEvent>(
       "toolbar-click",
       { detail: {} as any },
     )
 
-    // this.saveRef.addEventListener("click", (e) => {
-    //   this.toolbarClickEvent.detail.e = e
-    //   this.toolbarClickEvent.detail.type = "save"
-    //   this.dispatchEvent(this.toolbarClickEvent)
-    // })
-    //
+    this.saveRef.addEventListener("click", (e) => {
+      this.toolbarClickEvent.detail.e = e
+      this.toolbarClickEvent.detail.type = "save"
+      this.dispatchEvent(this.toolbarClickEvent)
+    })
+
+    this.panelRef.addEventListener("click", (e) => {
+      this.toolbarClickEvent.detail.e = e
+      this.toolbarClickEvent.detail.type = "panel"
+      this.dispatchEvent(this.toolbarClickEvent)
+    })
   }
-  mode(_mode: "edit" | "view") {
-    // if (mode === "view") this.saveRef.style.display = "none"
-    // if (mode === "edit") this.saveRef.style.display = "flex"
+  mode(mode: "edit" | "view") {
+    if (mode === "view") this.saveRef.style.display = "none"
+    if (mode === "edit") this.saveRef.style.display = "flex"
   }
 
   public get id() {
@@ -87,7 +89,7 @@ export class Toolbar extends HTMLDivElement {
 }
 
 interface CustomElementEventMap extends HTMLElementEventMap {
-  "toolbar-click": { detail: ToolbarClickEvent }
+  "toolbar-click": { detail: ToolbarControlClickEvent }
 }
 
-customElements.define(TAG_NAME, Toolbar, { extends: "div" })
+customElements.define(TAG_NAME, ToolbarControl, { extends: "div" })

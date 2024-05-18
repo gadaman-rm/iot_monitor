@@ -1,8 +1,8 @@
-import { PanListener, ZoomListener } from "@gadaman-rm/iot-widgets/event"
+import { PanListener, ZoomListener } from "@gadaco/iot-widgets/event"
 import { zoomer } from "../utility/zoomer"
 import { paner } from "../utility/paner"
-import { Point, point } from "@gadaman-rm/iot-widgets/math"
-import { SvgContainer } from "@gadaman-rm/iot-widgets"
+import { Point, point } from "@gadaco/iot-widgets/math"
+import { SvgContainer } from "@gadaco/iot-widgets"
 import { ShortcutListener } from "./ShortcutListener"
 
 export class ZoomPanListener {

@@ -31,12 +31,14 @@ export {
   KeyShortcatListener as IKeyShortcatListener,
   PanListener as IPanListener,
   ZoomListener as IZoomListener,
-} from "@gadaman-rm/iot-widgets/event"
+} from "@gadaco/iot-widgets/event"
+
+export { MenuJson as IMenuJson } from "@gadaco/iot-widgets/components"
 
 export { ShortcutListener as IShortcutListener } from "./edit/listener/ShortcutListener"
 // ********************** core components **********************
 export {
   Sidebar as ISidebar,
-  ContextMenu as IContextMenu,
   Toolbar as IToolbar,
+  ToolbarControl as IToolbarControl,
 } from "./edit/components"

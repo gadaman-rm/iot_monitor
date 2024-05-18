@@ -1,6 +1,8 @@
 import { resolve } from "path"
 import { defineConfig } from "vite"
 
+const BASE_URL = "http://coolpanel.ir:2525"
+
 // https://vitejs.dev/config/
 export default defineConfig({
   build: {
@@ -17,58 +19,58 @@ export default defineConfig({
   server: {
     proxy: {
       "/api/signin": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/signup": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/verify": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/access": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/signout": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
 
       "/api/load_all_plans": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/load_plan": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/choose_plan": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/update_plan": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/save_plan": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
       "/api/delete_plan": {
-        target: "https://coolpanel.ir:2525/",
+        target: BASE_URL,
         changeOrigin: true,
         methods: ["POST"],
       },
