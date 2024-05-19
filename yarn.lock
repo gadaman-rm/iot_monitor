@@ -166,14 +166,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gadaco/iot-widgets@file:../iot-widgets::locator=iot-widgets-test%40workspace%3A.":
-  version: 0.5.0
-  resolution: "@gadaco/iot-widgets@file:../iot-widgets#../iot-widgets::hash=e315f3&locator=iot-widgets-test%40workspace%3A."
+"@gadaco/iot-widgets@npm:^0.5.1":
+  version: 0.5.1
+  resolution: "@gadaco/iot-widgets@npm:0.5.1"
   dependencies:
     "@material/web": "npm:^1.4.1"
     material-components-web: "npm:^14.0.0"
     uuid: "npm:^9.0.1"
-  checksum: 10c0/53be5123f0c404073b5943343c723608a5d9adcb7c482c7eaf9cc6f74c754d310969c661bb01c1dabdc38ce05bbecece1574705bd187d7b0c33f9615e738e45b
+  checksum: 10c0/b20e91d8d688f3f80232ab381d7a822e8a377cbe7fc754177140438ddffa5f735cff65c7b034e029d2607385df1fd1114cfecbf3d42ed2d008a6900bd3452c91
   languageName: node
   linkType: hard
 
@@ -1639,7 +1639,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "iot-widgets-test@workspace:."
   dependencies:
-    "@gadaco/iot-widgets": ../iot-widgets
+    "@gadaco/iot-widgets": "npm:^0.5.1"
     "@material/web": "npm:^1.4.1"
     brandi: "npm:^5.0.0"
     eventemitter3: "npm:^5.0.1"
