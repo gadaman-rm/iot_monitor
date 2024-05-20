@@ -24,6 +24,13 @@ export class EditListener {
     this.init()
   }
 
+  public set selectedSidebar(value: {
+    tab: string | null | undefined
+    size: number
+  }) {
+    this.menuJson.rightOffset = value.size
+  }
+
   public get tool(): Tool {
     return this.toolbar.tool as any
   }
@@ -88,6 +95,10 @@ export class EditListener {
     })
 
     this.menuJson.items = MENU_JSON_DATA
+    this.menuJson.topOffset = 60
+    this.menuJson.leftOffset = 60
+    this.menuJson.rightOffset = 60
+
     this.menuJson.addEventListener("menu-select", (e) => {
       switch (e.detail.id) {
         case "rise-top": {

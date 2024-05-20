@@ -146,5 +146,13 @@ export function registerInjections() {
   injected(IShortcutListener, EventEmitter, StorageListener)
 
   // ********************** core components **********************
-  injected(ISidebar, EventEmitter, EditListener, DrawListener, SelectListener)
+  injected(
+    ISidebar,
+    SvgContainer,
+    EventEmitter,
+    EditListener,
+    DrawListener,
+    SelectListener,
+    StorageListener,
+  )
 }
