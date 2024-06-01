@@ -26,28 +26,33 @@
       </md-icon-button>
     </div>
     <div id="properties">
-      <md-filled-text-field
-        id="id"
-        label="id"
-        type="text"
-      ></md-filled-text-field>
-      <md-filled-text-field id="x" label="x" type="text"></md-filled-text-field>
-      <md-filled-text-field id="y" label="y" type="text"></md-filled-text-field>
-      <md-filled-text-field
-        id="width"
-        label="width"
-        type="text"
-      ></md-filled-text-field>
-      <md-filled-text-field
-        id="height"
-        label="height"
-        type="text"
-      ></md-filled-text-field>
-      <md-filled-text-field
-        id="rotate"
-        label="rotate"
-        type="text"
-      ></md-filled-text-field>
+      <md-tabs id="tabs">
+        <md-secondary-tab id="geometry-tab" aria-label="geometry-tab">
+          <svg
+            slot="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 512 512"
+          >
+            <path
+              d="M315.4 15.5C309.7 5.9 299.2 0 288 0s-21.7 5.9-27.4 15.5l-96 160c-5.9 9.9-6.1 22.2-.4 32.2s16.3 16.2 27.8 16.2H384c11.5 0 22.2-6.2 27.8-16.2s5.5-22.3-.4-32.2l-96-160zM288 312V456c0 22.1 17.9 40 40 40H472c22.1 0 40-17.9 40-40V312c0-22.1-17.9-40-40-40H328c-22.1 0-40 17.9-40 40zM128 512a128 128 0 1 0 0-256 128 128 0 1 0 0 256z"
+            />
+          </svg>
+        </md-secondary-tab>
+        <md-secondary-tab id="code-tab" aria-label="code-tab">
+          <svg
+            slot="icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 640 512"
+          >
+            <path
+              d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"
+            />
+          </svg>
+        </md-secondary-tab>
+      </md-tabs>
+
+      <div id="geometry-panel"></div>
+      <div id="code-panel"></div>
     </div>
   </div>
 
@@ -85,6 +90,7 @@
             <div class="widget" name="g-slider">Slider</div> -->
       <div class="widget" name="g-refrigerator-frame">Frame</div>
       <div class="widget" name="g-refrigerator-content">Content</div>
+      <div class="widget" name="g-row">Row</div>
       <!-- <div class="widget" name="button">Button</div>
             <div class="widget" name="datagrid">DataGrid</div> -->
     </div>

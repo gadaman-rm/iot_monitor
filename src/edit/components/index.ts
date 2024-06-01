@@ -1,3 +1,5 @@
+export * from "./Code/Code"
+export * from "./Geometry/Geometry"
 export * from "./Sidebar/Sidebar"
 export * from "./ToolbarControl/ToolbarControl"
 export * from "./Toolbar/Toolbar"

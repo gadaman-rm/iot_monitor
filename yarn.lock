@@ -166,14 +166,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gadaco/iot-widgets@npm:^0.5.3":
-  version: 0.5.3
-  resolution: "@gadaco/iot-widgets@npm:0.5.3"
+"@gadaco/iot-widgets@npm:^0.7.1":
+  version: 0.7.1
+  resolution: "@gadaco/iot-widgets@npm:0.7.1"
   dependencies:
     "@material/web": "npm:^1.4.1"
+    js-base64: "npm:^3.7.7"
     material-components-web: "npm:^14.0.0"
+    monaco-editor: "npm:^0.49.0"
     uuid: "npm:^9.0.1"
-  checksum: 10c0/82d6f6b479e2fcd695379097dda88b54c5ec91bcf03fc20a373def555028d695aeebcc1ab3662787da07b1c3b920b99de0557ed6edecacdcb51db7c04ed0570a
+  checksum: 10c0/5897604a8a57b102e205b6dda198d728280a2334883ecef994a1fe2070f519f88e3cfffe6b45f4c4bd217764c095e2261e912fa8d1b0337481ed255f242f75b3
   languageName: node
   linkType: hard
 
@@ -1639,7 +1641,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "iot-widgets-test@workspace:."
   dependencies:
-    "@gadaco/iot-widgets": "npm:^0.5.3"
+    "@gadaco/iot-widgets": "npm:^0.7.1"
     "@material/web": "npm:^1.4.1"
     brandi: "npm:^5.0.0"
     eventemitter3: "npm:^5.0.1"
@@ -1729,6 +1731,13 @@ __metadata:
     "@pkgjs/parseargs":
       optional: true
   checksum: 10c0/f01d8f972d894cd7638bc338e9ef5ddb86f7b208ce177a36d718eac96ec86638a6efa17d0221b10073e64b45edc2ce15340db9380b1f5d5c5d000cbc517dc111
+  languageName: node
+  linkType: hard
+
+"js-base64@npm:^3.7.7":
+  version: 3.7.7
+  resolution: "js-base64@npm:3.7.7"
+  checksum: 10c0/3c905a7e78b601e4751b5e710edd0d6d045ce2d23eb84c9df03515371e1b291edc72808dc91e081cb9855aef6758292a2407006f4608ec3705373dd8baf2f80f
   languageName: node
   linkType: hard
 
@@ -1953,6 +1962,13 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 10c0/46ea0f3ffa8bc6a5bc0c7081ffc3907777f0ed6516888d40a518c5111f8366d97d2678911ad1a6882bf592fa9de6c784fea32e1687bb94e1f4944170af48a5cf
+  languageName: node
+  linkType: hard
+
+"monaco-editor@npm:^0.49.0":
+  version: 0.49.0
+  resolution: "monaco-editor@npm:0.49.0"
+  checksum: 10c0/c62d19e65f8ad441d0b29d8f43181c730bd373854ff0f9331c42ed1b97b729ab099e6f961c2e377acddda6923b8030e0453ae87edd3f7db3ace75c91f44431cd
   languageName: node
   linkType: hard
 

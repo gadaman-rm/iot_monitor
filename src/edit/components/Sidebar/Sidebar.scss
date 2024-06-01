@@ -1,17 +1,14 @@
 :host {
   // --md-icon-button-icon-size: 32px;
-
-  // --md-outlined-text-field-label-text-color: green;
-  // --md-outlined-text-field-input-text-color: green;
-  // --md-filled-text-field-focus-active-indicator-color: green;
-  // --md-filled-text-field-input-text-placeholder-color: green;
-
-  // --md-filled-text-field-container-color: #fff;
+  --md-filled-text-field-label-text-color: var(--color-outline);
+  --md-filled-text-field-disabled-label-text-color: var(--color-outline);
   --md-filled-text-field-label-text-font: system-ui;
   --md-filled-text-field-input-text-font: system-ui;
   --g-sidebar-tab-select-color: var(--color-primary);
   // --g-sidebar-tab-on-color: var(--color-on-surface);
   --g-sidebar-tab-on-color: red;
+  --g-sidebar-panel-min: 50px;
+  --g-sidebar-panel-max: 1024px;
 }
 
 #root {
@@ -57,8 +54,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
-  margin-block-start: 1rem;
-  margin-inline: 1rem;
+  margin-inline: 0.4rem;
 }
 
 #widgets {

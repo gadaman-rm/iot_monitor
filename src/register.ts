@@ -21,6 +21,7 @@ import {
   RootContainer,
   SelectListener,
   ShortcutListener,
+  Geometry,
   Sidebar,
   StorageListener,
   SvgContainer,
@@ -30,8 +31,10 @@ import {
   ZoomListener,
   ZoomPanListener,
   Toolbar,
+  Code,
 } from "./tokens"
 import {
+  IGeometry,
   ISidebar,
   IEditListener,
   IListener,
@@ -45,6 +48,7 @@ import {
   IStorageListener,
   IViewListener,
   IToolbar,
+  ICode,
 } from "./types"
 
 export function registerBindings(container: Container) {
@@ -81,6 +85,8 @@ export function registerBindings(container: Container) {
   container.bind(EventEmitter).toInstance(IEventEmitter).inTransientScope()
 
   // ********************** core components **********************
+  container.bind(Code).toInstance(ICode).inSingletonScope()
+  container.bind(Geometry).toInstance(IGeometry).inSingletonScope()
   container.bind(Sidebar).toInstance(ISidebar).inSingletonScope()
   container.bind(MenuJson).toInstance(IMenuJson).inSingletonScope()
   container.bind(Toolbar).toInstance(IToolbar).inSingletonScope()
@@ -147,6 +153,24 @@ export function registerInjections() {
 
   // ********************** core components **********************
   injected(
+    ICode,
+    SvgContainer,
+    EventEmitter,
+    EditListener,
+    DrawListener,
+    SelectListener,
+    StorageListener,
+  )
+  injected(
+    IGeometry,
+    SvgContainer,
+    EventEmitter,
+    EditListener,
+    DrawListener,
+    SelectListener,
+    StorageListener,
+  )
+  injected(
     ISidebar,
     SvgContainer,
     EventEmitter,
@@ -154,5 +178,7 @@ export function registerInjections() {
     DrawListener,
     SelectListener,
     StorageListener,
+    Geometry,
+    Code,
   )
 }

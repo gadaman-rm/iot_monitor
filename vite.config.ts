@@ -2,6 +2,7 @@ import { resolve } from "path"
 import { defineConfig } from "vite"
 
 const BASE_URL = "http://coolpanel.ir:2525"
+// const BASE_URL = "http://193.151.149.180:2525"
 
 // https://vitejs.dev/config/
 export default defineConfig({

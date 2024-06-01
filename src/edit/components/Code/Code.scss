@@ -1,0 +1,8 @@
+#root {
+  color: var(--color-on-surface);
+}
+
+#json-edit {
+  --g-json-edit-width: 100%;
+  --g-json-edit-height: calc(100dvh - 200px);
+}
