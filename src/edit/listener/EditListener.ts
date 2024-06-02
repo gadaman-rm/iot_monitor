@@ -101,20 +101,20 @@ export class EditListener {
 
     this.menuJson.addEventListener("menu-select", (e) => {
       switch (e.detail.id) {
-        case "rise-top": {
-          this.svgContainer.riseToTop()
+        case "highest": {
+          this.svgContainer.highest()
           break
         }
-        case "rise": {
-          this.svgContainer.rise()
+        case "higher": {
+          this.svgContainer.higher()
           break
         }
         case "lower": {
           this.svgContainer.lower()
           break
         }
-        case "lower-bottom": {
-          this.svgContainer.lowerToBottom()
+        case "lowest": {
+          this.svgContainer.lowest()
           break
         }
         case "center": {

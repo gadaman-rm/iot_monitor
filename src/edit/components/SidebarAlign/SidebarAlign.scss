@@ -2,7 +2,7 @@
   color: var(--color-on-surface);
 }
 
-.container {
+#container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -10,8 +10,8 @@
   padding-block: 1rem;
   padding-inline: 1.6rem;
   & svg {
-    width: 24px;
-    height: 24px;
+    width: 32px;
+    height: 32px;
     cursor: pointer;
     fill: var(--color-on-surface);
     &:hover {
