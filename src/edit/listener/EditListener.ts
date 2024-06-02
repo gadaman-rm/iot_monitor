@@ -138,6 +138,18 @@ export class EditListener {
           this.svgContainer.verticalDistributeCenter()
           break
         }
+        case "column-distribute": {
+          this.svgContainer.columnDistribute()
+          break
+        }
+        case "expand-width": {
+          this.svgContainer.expandWidth()
+          break
+        }
+        case "shrink-width": {
+          this.svgContainer.shrinkWidth()
+          break
+        }
         case "h-top": {
           this.svgContainer.horizontalTop()
           break
@@ -152,6 +164,18 @@ export class EditListener {
         }
         case "h-distribute-center": {
           this.svgContainer.horizontalDistributeCenter()
+          break
+        }
+        case "row-distribute": {
+          this.svgContainer.rowDistribute()
+          break
+        }
+        case "expand-height": {
+          this.svgContainer.expandHeight()
+          break
+        }
+        case "shrink-height": {
+          this.svgContainer.shrinkHeight()
           break
         }
       }

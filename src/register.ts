@@ -21,7 +21,8 @@ import {
   RootContainer,
   SelectListener,
   ShortcutListener,
-  Geometry,
+  SidebarAlign,
+  SidebarGeometry,
   Sidebar,
   StorageListener,
   SvgContainer,
@@ -31,10 +32,12 @@ import {
   ZoomListener,
   ZoomPanListener,
   Toolbar,
-  Code,
+  SidebarCode,
+  SidebarToolbox,
 } from "./tokens"
 import {
-  IGeometry,
+  ISidebarAlign,
+  ISidebarGeometry,
   ISidebar,
   IEditListener,
   IListener,
@@ -48,7 +51,8 @@ import {
   IStorageListener,
   IViewListener,
   IToolbar,
-  ICode,
+  ISidebarCode,
+  ISidebarToolbox,
 } from "./types"
 
 export function registerBindings(container: Container) {
@@ -85,8 +89,13 @@ export function registerBindings(container: Container) {
   container.bind(EventEmitter).toInstance(IEventEmitter).inTransientScope()
 
   // ********************** core components **********************
-  container.bind(Code).toInstance(ICode).inSingletonScope()
-  container.bind(Geometry).toInstance(IGeometry).inSingletonScope()
+  container.bind(SidebarCode).toInstance(ISidebarCode).inSingletonScope()
+  container.bind(SidebarAlign).toInstance(ISidebarAlign).inSingletonScope()
+  container.bind(SidebarToolbox).toInstance(ISidebarToolbox).inSingletonScope()
+  container
+    .bind(SidebarGeometry)
+    .toInstance(ISidebarGeometry)
+    .inSingletonScope()
   container.bind(Sidebar).toInstance(ISidebar).inSingletonScope()
   container.bind(MenuJson).toInstance(IMenuJson).inSingletonScope()
   container.bind(Toolbar).toInstance(IToolbar).inSingletonScope()
@@ -153,7 +162,7 @@ export function registerInjections() {
 
   // ********************** core components **********************
   injected(
-    ICode,
+    ISidebarCode,
     SvgContainer,
     EventEmitter,
     EditListener,
@@ -162,7 +171,25 @@ export function registerInjections() {
     StorageListener,
   )
   injected(
-    IGeometry,
+    ISidebarToolbox,
+    SvgContainer,
+    EventEmitter,
+    EditListener,
+    DrawListener,
+    SelectListener,
+    StorageListener,
+  )
+  injected(
+    ISidebarGeometry,
+    SvgContainer,
+    EventEmitter,
+    EditListener,
+    DrawListener,
+    SelectListener,
+    StorageListener,
+  )
+  injected(
+    ISidebarAlign,
     SvgContainer,
     EventEmitter,
     EditListener,
@@ -178,7 +205,9 @@ export function registerInjections() {
     DrawListener,
     SelectListener,
     StorageListener,
-    Geometry,
-    Code,
+    SidebarGeometry,
+    SidebarToolbox,
+    SidebarCode,
+    SidebarAlign,
   )
 }

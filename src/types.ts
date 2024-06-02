@@ -38,8 +38,10 @@ export { MenuJson as IMenuJson } from "@gadaco/iot-widgets/components"
 export { ShortcutListener as IShortcutListener } from "./edit/listener/ShortcutListener"
 // ********************** core components **********************
 export {
-  Code as ICode,
-  Geometry as IGeometry,
+  SidebarCode as ISidebarCode,
+  SidebarToolbox as ISidebarToolbox,
+  SidebarGeometry as ISidebarGeometry,
+  SidebarAlign as ISidebarAlign,
   Sidebar as ISidebar,
   Toolbar as IToolbar,
   ToolbarControl as IToolbarControl,

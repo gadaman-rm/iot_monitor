@@ -1,0 +1,33 @@
+#root {
+  color: var(--color-on-surface);
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding-block: 1rem;
+  padding-inline: 1.6rem;
+  & svg {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    fill: var(--color-on-surface);
+    &:hover {
+      opacity: 0.8;
+    }
+    &:active {
+      opacity: 0.5;
+    }
+
+    &:hover::after {
+      display: block;
+      position: absolute;
+      content: attr(data-tooltip);
+      border: 1px solid black;
+      background: #eee;
+      padding: 0.25em;
+    }
+  }
+}

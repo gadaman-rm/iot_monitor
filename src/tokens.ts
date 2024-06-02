@@ -20,8 +20,10 @@ import {
   CreateViewFn,
   IViewListener,
   IToolbar,
-  IGeometry,
-  ICode,
+  ISidebarAlign,
+  ISidebarGeometry,
+  ISidebarCode,
+  ISidebarToolbox,
 } from "./types"
 import { MoveDragInit } from "./edit/listener/SelectListener"
 
@@ -48,8 +50,10 @@ export const ViewListener = token<IViewListener>("ViewListener")
 export const EventEmitter = token<IEventEmitter>("EventEmitter")
 
 // ********************** core components **********************
-export const Code = token<ICode>("Code")
-export const Geometry = token<IGeometry>("Geometry")
+export const SidebarCode = token<ISidebarCode>("SidebarCode")
+export const SidebarToolbox = token<ISidebarToolbox>("SidebarToolbox")
+export const SidebarAlign = token<ISidebarAlign>("SidebarAlign")
+export const SidebarGeometry = token<ISidebarGeometry>("SidebarGeometry")
 export const Sidebar = token<ISidebar>("Sidebar")
 export const MenuJson = token<IMenuJson>("MenuJson")
 export const Toolbar = token<IToolbar>("Toolbar")

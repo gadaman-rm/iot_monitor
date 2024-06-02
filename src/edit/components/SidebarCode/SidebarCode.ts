@@ -1,5 +1,5 @@
-import htmlText from "./Code.html?raw"
-import cssText from "./Code.scss?inline"
+import htmlText from "./SidebarCode.html?raw"
+import cssText from "./SidebarCode.scss?inline"
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
 import { Row, SvgContainer } from "@gadaco/iot-widgets"
@@ -12,8 +12,8 @@ const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
 
 // export const ATTRIBUTES = [] as const
-const TAG_NAME = `i-code`
-export class Code extends HTMLDivElement {
+const TAG_NAME = `i-sidebar-code`
+export class SidebarCode extends HTMLDivElement {
   // static get observedAttributes() { return ATTRIBUTES}
   rootRef: HTMLDivElement
   jsonEditRef: JsonEdit
@@ -73,4 +73,4 @@ export class Code extends HTMLDivElement {
   disconnectedCallback() {}
 }
 
-customElements.define(TAG_NAME, Code, { extends: "div" })
+customElements.define(TAG_NAME, SidebarCode, { extends: "div" })

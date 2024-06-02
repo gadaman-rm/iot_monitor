@@ -166,16 +166,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gadaco/iot-widgets@npm:^0.7.1":
-  version: 0.7.1
-  resolution: "@gadaco/iot-widgets@npm:0.7.1"
+"@gadaco/iot-widgets@npm:^0.8.0":
+  version: 0.8.0
+  resolution: "@gadaco/iot-widgets@npm:0.8.0"
   dependencies:
     "@material/web": "npm:^1.4.1"
     js-base64: "npm:^3.7.7"
     material-components-web: "npm:^14.0.0"
-    monaco-editor: "npm:^0.49.0"
     uuid: "npm:^9.0.1"
-  checksum: 10c0/5897604a8a57b102e205b6dda198d728280a2334883ecef994a1fe2070f519f88e3cfffe6b45f4c4bd217764c095e2261e912fa8d1b0337481ed255f242f75b3
+  checksum: 10c0/54ada36db782501dd88b1719b07e275c4cfe4ea3a9f34f772d5321e19e65cc609b95ffb1208d8e4b1d5fe171e9738e893408810cd0980c1d00dfcaae91ebdb9c
   languageName: node
   linkType: hard
 
@@ -1641,7 +1640,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "iot-widgets-test@workspace:."
   dependencies:
-    "@gadaco/iot-widgets": "npm:^0.7.1"
+    "@gadaco/iot-widgets": "npm:^0.8.0"
     "@material/web": "npm:^1.4.1"
     brandi: "npm:^5.0.0"
     eventemitter3: "npm:^5.0.1"
@@ -1962,13 +1961,6 @@ __metadata:
   bin:
     mkdirp: bin/cmd.js
   checksum: 10c0/46ea0f3ffa8bc6a5bc0c7081ffc3907777f0ed6516888d40a518c5111f8366d97d2678911ad1a6882bf592fa9de6c784fea32e1687bb94e1f4944170af48a5cf
-  languageName: node
-  linkType: hard
-
-"monaco-editor@npm:^0.49.0":
-  version: 0.49.0
-  resolution: "monaco-editor@npm:0.49.0"
-  checksum: 10c0/c62d19e65f8ad441d0b29d8f43181c730bd373854ff0f9331c42ed1b97b729ab099e6f961c2e377acddda6923b8030e0453ae87edd3f7db3ace75c91f44431cd
   languageName: node
   linkType: hard
 

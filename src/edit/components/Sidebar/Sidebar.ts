@@ -8,14 +8,15 @@ import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
 import { MdIconButton } from "@material/web/iconbutton/icon-button"
 import { SvgContainer, isToWidgets } from "@gadaco/iot-widgets"
-// import { MdFilledTextField } from "@material/web/textfield/filled-text-field"
 import EventEmitter from "eventemitter3"
 import { SelectListener } from "../../listener/SelectListener"
 import { StorageListener } from "../../listener/StorageListener"
 import { MdTabs } from "@material/web/tabs/tabs"
-import { Geometry } from "../Geometry/Geometry"
-import { Code } from "../Code/Code"
+import { SidebarGeometry } from "../SidebarGeometry/SidebarGeometry"
+import { SidebarCode } from "../SidebarCode/SidebarCode"
 import { MdPrimaryTab } from "@material/web/tabs/primary-tab"
+import { SidebarAlign } from "../SidebarAlign/SidebarAlign"
+import { SidebarToolbox } from "../SidebarToolbox/SidebarToolbox"
 
 const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
@@ -34,12 +35,8 @@ export class Sidebar extends HTMLDivElement {
   codeTab: MdPrimaryTab
   codePanelRef: HTMLDivElement
   propertiesRef: MdTabs
-  // idRef: MdFilledTextField
-  // xRef: MdFilledTextField
-  // yRef: MdFilledTextField
-  // widthRef: MdFilledTextField
-  // heightRef: MdFilledTextField
-  // rotateRef: MdFilledTextField
+  alignRef: HTMLDialogElement
+  sidebarToolboxRef: HTMLDialogElement
   constructor(
     public svgContainer: SvgContainer,
     public eventEmitter: EventEmitter,
@@ -47,8 +44,10 @@ export class Sidebar extends HTMLDivElement {
     public drawListener: DrawListener,
     public selectListener: SelectListener,
     public storageListener: StorageListener,
-    public geometry: Geometry,
-    public code: Code,
+    public sidebarGeometry: SidebarGeometry,
+    public sidebarToolbox: SidebarToolbox,
+    public sidebarCode: SidebarCode,
+    public sidebarAlign: SidebarAlign,
   ) {
     super()
     this.attachShadow({ mode: "open" })
@@ -63,16 +62,23 @@ export class Sidebar extends HTMLDivElement {
     this.codePanelRef = this.shadowRoot!.querySelector("#code-panel")!
     this.propertiesRef = this.shadowRoot!.querySelector("#properties")!
     this.widgetsRef = this.shadowRoot!.querySelector("#widgets")!
+    this.alignRef = this.shadowRoot!.querySelector("#align")!
+    this.sidebarToolboxRef = this.shadowRoot!.querySelector("#sidebar-toolbox")!
+
+    this.sidebarToolboxRef.appendChild(sidebarToolbox)
+    this.alignRef.appendChild(sidebarAlign)
 
     this.rootRef.addEventListener("sidebar-change", (e) => {
+      console.log(e.detail.id)
+
       this.editListener.selectedSidebar = e.detail as any
     })
 
-    this.geometryPanelRef.appendChild(geometry)
+    this.geometryPanelRef.appendChild(sidebarGeometry)
 
     this.codeTab.style.visibility = "hidden"
     this.codePanelRef.style.display = "none"
-    this.codePanelRef.appendChild(code)
+    this.codePanelRef.appendChild(sidebarCode)
   }
 
   // attributeUpdate(attributeName: any, oldValue: string, newValue: string) { }

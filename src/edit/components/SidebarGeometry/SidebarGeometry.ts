@@ -1,5 +1,5 @@
-import htmlText from "./Geometry.html?raw"
-import cssText from "./Geometry.scss?inline"
+import htmlText from "./SidebarGeometry.html?raw"
+import cssText from "./SidebarGeometry.scss?inline"
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
 import { SvgContainer } from "@gadaco/iot-widgets"
@@ -12,8 +12,8 @@ const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
 
 // export const ATTRIBUTES = [] as const
-const TAG_NAME = `i-geometry`
-export class Geometry extends HTMLDivElement {
+const TAG_NAME = `i-sidebar-geometry`
+export class SidebarGeometry extends HTMLDivElement {
   // static get observedAttributes() { return ATTRIBUTES}
   rootRef: HTMLDivElement
   idRef: MdFilledTextField
@@ -143,4 +143,4 @@ export class Geometry extends HTMLDivElement {
   disconnectedCallback() {}
 }
 
-customElements.define(TAG_NAME, Geometry, { extends: "div" })
+customElements.define(TAG_NAME, SidebarGeometry, { extends: "div" })
