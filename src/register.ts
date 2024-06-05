@@ -146,6 +146,7 @@ export function registerInjections() {
     Toolbar,
     ToolbarControl,
     StorageListener,
+    ShortcutListener,
   )
   injected(IStorageListener, SvgContainer, EventEmitter)
   injected(

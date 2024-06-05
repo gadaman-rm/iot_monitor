@@ -6,6 +6,7 @@ import { StorageListener } from "./StorageListener"
 import { OK_SYM } from "../../api/utility"
 import { MenuJson } from "@gadaco/iot-widgets/components"
 import { MENU_JSON_DATA } from "../json-data/menuJsonData"
+import { ShortcutListener } from "./ShortcutListener"
 
 export type Mode = "edit" | "view" | "draw" | "select"
 export type EmitterEventType = "modechange" | "toolchange"
@@ -19,6 +20,7 @@ export class EditListener {
     public toolbar: Toolbar,
     public toolbarControl: ToolbarControl,
     public storageListener: StorageListener,
+    public shortcutListener: ShortcutListener,
   ) {
     this.svgContainer = svgContainer
     this.init()
@@ -101,6 +103,24 @@ export class EditListener {
 
     this.menuJson.addEventListener("menu-select", (e) => {
       switch (e.detail.id) {
+        case "delete":
+          this.shortcutListener.emittSelect("delete")
+          break
+
+        case "cut": {
+          this.shortcutListener.emittSelect("cut")
+          break
+        }
+
+        case "copy": {
+          this.shortcutListener.emittSelect("copy")
+          break
+        }
+
+        case "past": {
+          this.shortcutListener.emittSelect("past")
+          break
+        }
         case "highest": {
           this.svgContainer.highest()
           break

@@ -2,7 +2,7 @@ import EventEmitter from "eventemitter3"
 import { StorageListener } from "./StorageListener"
 
 export type ShortcutEvent = {
-  type: "reset-zoom-pan" | "delete-selected" | "selecte-all"
+  type: "reset-zoom-pan" | "delete" | "selecte-all" | "cut" | "copy" | "past"
 }
 export type EmitterEventType = "shortcut-press"
 export class ShortcutListener {
@@ -25,8 +25,23 @@ export class ShortcutListener {
         if (e.ctrlKey) this.emittSelect("reset-zoom-pan")
         break
       case "Delete":
-        this.emittSelect("delete-selected")
+        this.emittSelect("delete")
         this.storageListener.emitSaveChange(false)
+        break
+      case "KeyX":
+        if (e.ctrlKey) {
+          this.emittSelect("cut")
+          this.storageListener.emitSaveChange(false)
+        }
+        break
+      case "KeyC":
+        if (e.ctrlKey) this.emittSelect("copy")
+        break
+      case "KeyV":
+        if (e.ctrlKey) {
+          this.emittSelect("past")
+          this.storageListener.emitSaveChange(false)
+        }
         break
     }
   }

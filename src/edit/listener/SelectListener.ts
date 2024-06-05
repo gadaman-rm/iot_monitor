@@ -55,12 +55,36 @@ export class SelectListener {
         case "selecte-all":
           this.selectAll()
           break
-        case "delete-selected":
+        case "delete":
           this.svgContainer.editBoxforWidgets.forEach((item) => {
             this.svgContainer.removeEditBox(item.editBox)
             this.svgContainer.removeWidget(item.widget)
           })
           break
+
+        case "cut": {
+          this.svgContainer.cut()
+          break
+        }
+
+        case "copy": {
+          this.svgContainer.copy()
+          break
+        }
+
+        case "past": {
+          this.deSelectAll()
+          const { widgets } = this.svgContainer.past()
+          widgets.forEach((item) => {
+            if (item) {
+              item.x += 10
+              item.y += 10
+              this.svgContainer.addWidget(item)
+              this.emittSelect(item)
+            }
+          })
+          break
+        }
       }
     })
     this.dragListener.onDragStart = (e) => {
