@@ -166,15 +166,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@gadaco/iot-widgets@npm:^0.10.0":
-  version: 0.10.0
-  resolution: "@gadaco/iot-widgets@npm:0.10.0"
+"@gadaco/iot-widgets@npm:^0.10.1":
+  version: 0.10.1
+  resolution: "@gadaco/iot-widgets@npm:0.10.1"
   dependencies:
-    "@material/web": "npm:^1.4.1"
+    "@material/web": "npm:^1.5.0"
     js-base64: "npm:^3.7.7"
     material-components-web: "npm:^14.0.0"
     uuid: "npm:^9.0.1"
-  checksum: 10c0/e62419bf5069d88efc7a91a9810b22afb19993e317d563ed2501396502a872cfbb488db9cb4aacf950d0a0cc6c8b469b647a12f951ed5fa711aa81b4505ef5b0
+  checksum: 10c0/bb480b52e1b27b7151da736210ae166e8b26fe0c234360fe8c96841bbec979384b88eda61ef6a171503e0fcb5f2238a478925bdb350ea8e9c1bd0876f6363fcc
   languageName: node
   linkType: hard
 
@@ -992,13 +992,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@material/web@npm:^1.4.1":
-  version: 1.4.1
-  resolution: "@material/web@npm:1.4.1"
+"@material/web@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@material/web@npm:1.5.0"
   dependencies:
     lit: "npm:^2.7.4 || ^3.0.0"
     tslib: "npm:^2.4.0"
-  checksum: 10c0/db0667b15c4af26974c76f0aeafabbaf1e4ca9ccb598e3f569bccee9e83bf659080a94bc6bcddf5be263ec467e8f4e1a9d1efce099c96f48f5506ae49225cf73
+  checksum: 10c0/4f6e42258b7c150e26954d39fddde2717b46b5f4d8fbc0d31c08e95d3894c1e7f4c705403dc2284d324cf9d95da7c0b1f32abf0fd98611974802d957a65e50b6
   languageName: node
   linkType: hard
 
@@ -1640,13 +1640,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "iot-widgets-test@workspace:."
   dependencies:
-    "@gadaco/iot-widgets": "npm:^0.10.0"
-    "@material/web": "npm:^1.4.1"
+    "@gadaco/iot-widgets": "npm:^0.10.1"
+    "@material/web": "npm:^1.5.0"
     brandi: "npm:^5.0.0"
     eventemitter3: "npm:^5.0.1"
-    sass: "npm:^1.77.1"
+    sass: "npm:^1.77.4"
     typescript: "npm:^5.4.5"
-    vite: "npm:^5.2.11"
+    vite: "npm:^5.2.12"
   languageName: unknown
   linkType: soft
 
@@ -2186,16 +2186,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.77.1":
-  version: 1.77.2
-  resolution: "sass@npm:1.77.2"
+"sass@npm:^1.77.4":
+  version: 1.77.4
+  resolution: "sass@npm:1.77.4"
   dependencies:
     chokidar: "npm:>=3.0.0 <4.0.0"
     immutable: "npm:^4.0.0"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   bin:
     sass: sass.js
-  checksum: 10c0/0d292339064de3c902e209d41de9c4eb2038cff326476aeebbb5be3eee1d23400d975face2b8e124ae617b10af3e93bec01580f61912f34e4c517fe137a118b6
+  checksum: 10c0/b9cb4882bded282aabe38d011adfce375e1f282184fcf93dc3da5d5be834c6aa53c474c15634c351ef7bd85146cfd1cc81343654cc3bcf000d78e856da4225ef
   languageName: node
   linkType: hard
 
@@ -2399,9 +2399,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.11":
-  version: 5.2.11
-  resolution: "vite@npm:5.2.11"
+"vite@npm:^5.2.12":
+  version: 5.2.12
+  resolution: "vite@npm:5.2.12"
   dependencies:
     esbuild: "npm:^0.20.1"
     fsevents: "npm:~2.3.3"
@@ -2435,7 +2435,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 10c0/664b8d68e4f5152ae16bd2041af1bbaf11c43630ac461835bc31ff7d019913b33e465386e09f66dc1037d7aeefbb06939e0173787c063319bc2bd30c3b9ad8e4
+  checksum: 10c0/f03fdfc320adea3397df3e327029fd875f8220779f679ab183a3a994e8788b4ce531fee28f830361fb274f3cf08ed9adb9429496ecefdc3faf535b38da7ea8b1
   languageName: node
   linkType: hard
 
