@@ -1,6 +1,24 @@
+import "@material/web/textfield/filled-text-field"
+import "@material/web/textfield/outlined-text-field"
+
+import "@material/web/select/outlined-select"
+import "@material/web/select/filled-select"
+import "@material/web/select/select-option"
+
+import "@material/web/checkbox/checkbox"
+
+import "@material/web/radio/radio"
+
+import "@material/web/button/outlined-button"
+import "@material/web/button/filled-button"
+import "@material/web/button/filled-tonal-button"
+import "@material/web/button/elevated-button"
+
 import "@material/web/tabs/tabs"
 import "@material/web/tabs/primary-tab"
 import "@material/web/tabs/secondary-tab"
+import "@gadaco/iot-widgets/components"
+
 import { Sidebar as GSidebar } from "@gadaco/iot-widgets/components"
 import htmlText from "./Sidebar.html?raw"
 import cssText from "./Sidebar.scss?inline"
@@ -89,6 +107,7 @@ export class Sidebar extends HTMLDivElement {
         const { widget } = editBoxforWidgets[0]
 
         switch (widget.getAttribute("is")) {
+          case "g-form-builder":
           case "g-row": {
             this.codeTab.style.visibility = "visible"
             break

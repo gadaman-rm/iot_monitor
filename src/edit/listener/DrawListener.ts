@@ -1,9 +1,15 @@
-import { EditBox, IWidgets, SvgContainer } from "@gadaco/iot-widgets"
+import {
+  EditBox,
+  FormBuilder,
+  IWidgets,
+  SvgContainer,
+} from "@gadaco/iot-widgets"
 import { DragListener } from "@gadaco/iot-widgets/event"
 import { EditListener } from "./EditListener"
 import { MoveDragInit, SelectListener } from "./SelectListener"
 import { distancePointFromLine, point } from "@gadaco/iot-widgets/math"
 import { StorageListener } from "./StorageListener"
+import { Modal } from "@gadaco/iot-widgets/components"
 
 export class DrawListener {
   #drawWidget?: () => IWidgets | undefined | null
@@ -32,6 +38,11 @@ export class DrawListener {
         this.selectListener.deSelectAll()
         const currentMouseCoord = this.svgContainer.mouseCoordInContainer(e)
         const drawWidget = this.#drawWidget()
+
+        if (drawWidget?.getAttribute("is") === "g-form-builder")
+          (drawWidget as FormBuilder).modalRef =
+            document.querySelector<Modal>("#mainModal")!
+
         if (drawWidget) {
           e.param.initFn!({
             widget: drawWidget,

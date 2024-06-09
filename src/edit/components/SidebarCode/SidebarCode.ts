@@ -2,7 +2,7 @@ import htmlText from "./SidebarCode.html?raw"
 import cssText from "./SidebarCode.scss?inline"
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
-import { Row, SvgContainer } from "@gadaco/iot-widgets"
+import { FormBuilder, Row, SvgContainer } from "@gadaco/iot-widgets"
 import { JsonEdit } from "@gadaco/iot-widgets/components"
 import EventEmitter from "eventemitter3"
 import { SelectListener } from "../../listener/SelectListener"
@@ -43,6 +43,26 @@ export class SidebarCode extends HTMLDivElement {
 
         this.jsonEditRef.readonly = false
         switch (widget.getAttribute("is")) {
+          case "g-form-builder": {
+            setTimeout(() => {
+              this.jsonEditRef.code = JSON.stringify(
+                (widget as FormBuilder).items,
+                null,
+                2,
+              )
+
+              this.jsonEditRef.onChange = (e) => {
+                this.storageListener.emitSaveChange(false)
+
+                const items = this.jsonEditRef.codeInJson()
+                if (items && Array.isArray(items)) {
+                  ;(widget as FormBuilder).items = eval(e.detail.json)
+                }
+              }
+            }, 0)
+
+            break
+          }
           case "g-row": {
             this.jsonEditRef.code = JSON.stringify(
               (widget as Row).items,
@@ -62,8 +82,6 @@ export class SidebarCode extends HTMLDivElement {
           }
         }
       } else {
-        // console.log(e.detail.editBoxforWidgets)
-
         this.jsonEditRef.readonly = true
         this.jsonEditRef.onChange = () => {}
         this.jsonEditRef.code = ""

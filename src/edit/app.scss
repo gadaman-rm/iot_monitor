@@ -4,3 +4,56 @@
   height: 100dvh;
   background-color: gray;
 }
+
+.mainModalHeadeForms {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.formBuilderItem {
+  width: 100%;
+  margin-block: 1px;
+}
+
+.formBuilderTabPanel {
+  overflow: auto;
+}
+
+.formBuilderCheckboxItems {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0.4rem;
+}
+
+.formBuilderCheckboxItem {
+  margin-inline: 3px;
+}
+
+.formBuilderCheckboxLabel {
+  padding: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 5px;
+  font-size: large;
+}
+
+.formBuilderRadioBoxItems {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  padding: 0.4rem;
+}
+
+.formBuilderRadioBoxItem {
+  margin-block-end: 3px;
+}
+
+.formBuilderRadioBoxLabel {
+  padding: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 5px;
+  font-size: large;
+}
