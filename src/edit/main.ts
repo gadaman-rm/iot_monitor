@@ -21,6 +21,8 @@ import "@material/web/tabs/primary-tab"
 import "@material/web/tabs/secondary-tab"
 
 import "@material/web/iconbutton/icon-button"
+import "@material/web/switch/switch"
+
 import "./reset.scss"
 import "./app.scss"
 import { container } from "../container"

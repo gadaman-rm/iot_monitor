@@ -87,8 +87,6 @@ export class Sidebar extends HTMLDivElement {
     this.alignRef.appendChild(sidebarAlign)
 
     this.rootRef.addEventListener("sidebar-change", (e) => {
-      console.log(e.detail.id)
-
       this.editListener.selectedSidebar = e.detail as any
     })
 

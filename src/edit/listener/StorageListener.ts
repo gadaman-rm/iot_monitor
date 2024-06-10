@@ -2,7 +2,6 @@ import { FormBuilder, SvgContainer, isToWidgets } from "@gadaco/iot-widgets"
 import { GetPlanJsonWidget, getPlan } from "../../api/edit"
 import { OK_SYM } from "../../api/utility"
 import EventEmitter from "eventemitter3"
-import { Modal } from "@gadaco/iot-widgets/components"
 
 export type StorageEvent = {
   name: string
@@ -29,7 +28,7 @@ export class StorageListener {
 
               if (is === "g-form-builder")
                 (newWidget as FormBuilder).modalRef =
-                  document.querySelector<Modal>("#mainModal")!
+                  document.querySelector<any>("#mainModal")!
 
               if (newWidget) {
                 for (const [key, value] of Object.entries(attrs))

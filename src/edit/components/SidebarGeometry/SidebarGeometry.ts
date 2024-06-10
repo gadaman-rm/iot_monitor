@@ -2,11 +2,12 @@ import htmlText from "./SidebarGeometry.html?raw"
 import cssText from "./SidebarGeometry.scss?inline"
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
-import { SvgContainer } from "@gadaco/iot-widgets"
+import { FormBuilder, SvgContainer } from "@gadaco/iot-widgets"
 import EventEmitter from "eventemitter3"
 import { SelectListener } from "../../listener/SelectListener"
 import { StorageListener } from "../../listener/StorageListener"
 import { MdFilledTextField } from "@material/web/textfield/filled-text-field"
+import { Checkbox } from "@material/web/checkbox/internal/checkbox"
 
 const template = document.createElement("template")
 template.innerHTML = `<style>${cssText}</style>${htmlText}`
@@ -22,6 +23,8 @@ export class SidebarGeometry extends HTMLDivElement {
   widthRef: MdFilledTextField
   heightRef: MdFilledTextField
   rotateRef: MdFilledTextField
+  otherCustomComponentRef: HTMLDivElement
+  openRef: Checkbox
   constructor(
     public svgContainer: SvgContainer,
     public eventEmitter: EventEmitter,
@@ -41,6 +44,10 @@ export class SidebarGeometry extends HTMLDivElement {
     this.widthRef = this.shadowRoot!.querySelector("#width")!
     this.heightRef = this.shadowRoot!.querySelector("#height")!
     this.rotateRef = this.shadowRoot!.querySelector("#rotate")!
+    this.otherCustomComponentRef = this.shadowRoot!.querySelector(
+      "#otherCustomComponent",
+    )!
+    this.openRef = this.shadowRoot!.querySelector("#open")!
     this.idRef.disabled = true
     this.xRef.disabled = true
     this.yRef.disabled = true
@@ -52,6 +59,8 @@ export class SidebarGeometry extends HTMLDivElement {
   // attributeUpdate(attributeName: any, oldValue: string, newValue: string) { }
   connectedCallback() {
     this.editListener.svgContainer.addEventListener("editbox-change", (e) => {
+      let selectedFormBuilder: FormBuilder | null = null
+
       if (e.detail.editBoxforWidgets.length === 1) {
         this.idRef.disabled = false
         this.xRef.disabled = false
@@ -123,7 +132,25 @@ export class SidebarGeometry extends HTMLDivElement {
           this.heightRef.value = e.detail.height.toString()
           this.rotateRef.value = e.detail.rotate.toString()
         })
+
+        if (widget.getAttribute("is")! === "g-form-builder") {
+          this.otherCustomComponentRef.style.display = "block"
+          selectedFormBuilder = widget as any
+          // selectedFormBuilder?.renderModalRef()
+
+          this.openRef.onchange = (_e) => {
+            if (selectedFormBuilder)
+              selectedFormBuilder.open = this.openRef.checked
+          }
+          if (selectedFormBuilder) {
+            selectedFormBuilder.onOpen = (e) => {
+              this.openRef.checked = e.detail.open
+            }
+          }
+        }
       } else if (e.detail.editBoxforWidgets.length === 0) {
+        selectedFormBuilder = null
+        this.otherCustomComponentRef.style.display = "none"
         this.idRef.value = ""
         this.idRef.error = false
         this.idRef.disabled = true

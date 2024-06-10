@@ -9,7 +9,6 @@ import { EditListener } from "./EditListener"
 import { MoveDragInit, SelectListener } from "./SelectListener"
 import { distancePointFromLine, point } from "@gadaco/iot-widgets/math"
 import { StorageListener } from "./StorageListener"
-import { Modal } from "@gadaco/iot-widgets/components"
 
 export class DrawListener {
   #drawWidget?: () => IWidgets | undefined | null
@@ -41,7 +40,7 @@ export class DrawListener {
 
         if (drawWidget?.getAttribute("is") === "g-form-builder")
           (drawWidget as FormBuilder).modalRef =
-            document.querySelector<Modal>("#mainModal")!
+            document.querySelector<any>("#mainModal")!
 
         if (drawWidget) {
           e.param.initFn!({
