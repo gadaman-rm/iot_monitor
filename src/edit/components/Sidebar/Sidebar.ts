@@ -25,7 +25,7 @@ import cssText from "./Sidebar.scss?inline"
 import { EditListener } from "../../listener/EditListener"
 import { DrawListener } from "../../listener/DrawListener"
 import { MdIconButton } from "@material/web/iconbutton/icon-button"
-import { SvgContainer, isToWidgets } from "@gadaco/iot-widgets"
+import { SvgContainer } from "@gadaco/iot-widgets"
 import EventEmitter from "eventemitter3"
 import { SelectListener } from "../../listener/SelectListener"
 import { StorageListener } from "../../listener/StorageListener"
@@ -47,7 +47,6 @@ export class Sidebar extends HTMLDivElement {
   propertyBoxRef: HTMLDivElement
   tabs: MdTabs
   activeTab = "geometry"
-  widgetsRef: HTMLDivElement
   geometryPanelRef: HTMLDivElement
   geometryTab: MdPrimaryTab
   codeTab: MdPrimaryTab
@@ -79,7 +78,6 @@ export class Sidebar extends HTMLDivElement {
     this.geometryPanelRef = this.shadowRoot!.querySelector("#geometry-panel")!
     this.codePanelRef = this.shadowRoot!.querySelector("#code-panel")!
     this.propertiesRef = this.shadowRoot!.querySelector("#properties")!
-    this.widgetsRef = this.shadowRoot!.querySelector("#widgets")!
     this.alignRef = this.shadowRoot!.querySelector("#align")!
     this.sidebarToolboxRef = this.shadowRoot!.querySelector("#sidebar-toolbox")!
 
@@ -137,7 +135,9 @@ export class Sidebar extends HTMLDivElement {
       }
     }
 
-    this.rootRef.addEventListener("click", this.handleClick)
+    this.rootRef.addEventListener("click", (e) =>
+      this.sidebarToolbox.sidebarClickEmit(e),
+    )
     this.shadowRoot!.querySelectorAll<MdIconButton>(".header_btn")!.forEach(
       (item) => {
         item.onclick = () => {
@@ -146,37 +146,8 @@ export class Sidebar extends HTMLDivElement {
         }
       },
     )
-    this.editListener.addListener("modechange", (mode) => {
-      if (mode === "draw") {
-        document.body.style.cursor = "crosshair"
-      } else {
-        this.select(null)
-        document.body.style.cursor = "inherit"
-      }
-    })
   }
-  disconnectedCallback() {
-    this.rootRef.removeEventListener("click", this.handleClick)
-  }
-
-  handleClick = (e: MouseEvent) => {
-    this.select(e.target as any)
-  }
-  select(elem: HTMLElement | null) {
-    let selected = null as any
-    ;([...this.widgetsRef.children] as HTMLElement[]).map((item) => {
-      if (item === elem) {
-        selected = item
-        selected.classList.add("widget--selected")
-        this.drawListener.drawWidget = () =>
-          isToWidgets(item.getAttribute("name") as any)
-      } else item.classList.remove("widget--selected")
-    })
-
-    if (selected) this.editListener.mode = "draw"
-    if (!selected && this.editListener.mode === "draw")
-      this.editListener.mode = "view"
-  }
+  disconnectedCallback() {}
 }
 
 customElements.define(TAG_NAME, Sidebar, { extends: "div" })

@@ -73,16 +73,18 @@ export class SelectListener {
         }
 
         case "past": {
-          this.deSelectAll()
           const { widgets } = this.svgContainer.past()
-          widgets.forEach((item) => {
-            if (item) {
-              item.x += 10
-              item.y += 10
-              this.svgContainer.addWidget(item)
-              this.emittSelect(item)
-            }
-          })
+          if (widgets.length > 0) {
+            this.deSelectAll()
+            widgets.forEach((item) => {
+              if (item) {
+                item.x += 10
+                item.y += 10
+                this.svgContainer.addWidget(item)
+                this.emittSelect(item)
+              }
+            })
+          }
           break
         }
       }

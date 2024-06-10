@@ -67,6 +67,10 @@ export class EditListener {
   }
 
   init() {
+    this.svgContainer.addEventListener(
+      "contextmenu",
+      this.menuJson.handleContextMenu,
+    )
     setTimeout(() => {
       this.toolbar.tool = "mouse"
       this.eventEmitter.emit("toolchange", this.toolbar.tool)

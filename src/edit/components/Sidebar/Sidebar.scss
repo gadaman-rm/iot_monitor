@@ -49,40 +49,6 @@
   flex-wrap: wrap;
 }
 
-// #properties {
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   gap: 0.5rem;
-//   margin-inline: 0.4rem;
-// }
-//
-#widgets {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0.4rem;
-}
-
-.widget {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  width: 1rem;
-  height: 3rem;
-  border: 1px solid var(--color-secondry);
-  border-radius: 0.5rem;
-  cursor: pointer;
-
-  &--selected {
-    background-color: var(--color-secondry);
-    color: var(--color-on-secondry);
-    cursor: inherit;
-  }
-}
-
 .sidebar-icon svg {
   position: absolute;
   inset-inline-start: 50%;

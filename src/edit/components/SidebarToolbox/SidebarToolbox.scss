@@ -1,7 +1,25 @@
 #root {
-  color: var(--color-on-surface);
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  padding: 0.4rem;
 }
 
-md-filled-text-field {
+.widget {
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  width: 1rem;
+  height: 3rem;
+  border: 1px solid var(--color-secondry);
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  &--selected {
+    background-color: var(--color-secondry);
+    color: var(--color-on-secondry);
+    cursor: inherit;
+  }
 }
